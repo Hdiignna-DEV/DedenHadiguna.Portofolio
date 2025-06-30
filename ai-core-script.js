@@ -2,12 +2,12 @@
     "use strict";
 
     const HIGHLIGHT_COLORS = {
-        primary: '#00BFFF',
-        secondary: '#FF00FF',
-        tertiary: '#39FF14',
-        darkText: '#E2E8F0',
-        lightBg: '#1A202C',
-        glitch: '#E74C3C'
+        primary: '#2BC0E4', // Updated to Skyline color
+        secondary: '#FF6B6B', // Updated to new accent secondary color
+        tertiary: '#5E6D7E', // Updated to new accent tertiary color
+        darkText: '#E2E8F0', // Keep this as dark text color for contrast in some cases, or align with dark mode text if used as bg
+        lightBg: '#1A202C', // Keep this as dark background for contrast
+        glitch: '#FF4F4F' // Updated to new glitch color
     };
     const GLITCH_COLOR = HIGHLIGHT_COLORS.glitch;
 
@@ -1259,6 +1259,927 @@
         }
     };
 
+    const debounce = (func, delay) => {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
+
+    const preloader = document.getElementById('preloader');
+    const preloaderStatus = document.getElementById('preloader-status');
+
+    function hidePreloader() {
+        if (preloader) {
+            preloader.classList.add('hidden');
+            preloader.addEventListener('transitionend', () => {
+                preloader.remove();
+                initCoreFeatures();
+            }, { once: true });
+        } else {
+            initCoreFeatures();
+        }
+    }
+
+    if (preloader && preloaderStatus) {
+        const preloaderBar = preloader.querySelector('.preloader-bar');
+        const preloaderTextSpans = preloader.querySelectorAll('.preloader-text span');
+        
+        preloaderStatus.textContent = 'MEMUAT...';
+
+        if (preloaderBar) {
+            preloaderBar.addEventListener('animationend', () => {
+                preloaderStatus.textContent = 'SIAP';
+                preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
+                setTimeout(hidePreloader, 300);
+            }, { once: true });
+
+            preloaderTextSpans.forEach((span, index) => {
+                let delay = 0;
+                if (index === 0) delay = 100;
+                if (index === 1) delay = 2000;
+                if (index === 2) delay = 2750;
+                
+                setTimeout(() => {
+                    span.classList.add('typed-done');
+                }, delay + 100);
+            });
+
+        } else {
+            preloaderStatus.textContent = 'SIAP';
+            preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
+            setTimeout(hidePreloader, 500);
+        }
+    } else {
+        initCoreFeatures();
+    }
+
+    function initCoreFeatures() {
+        initContentAnimations();
+        initQuantumCanvas();
+        initUptimeCounter();
+        initAIStatus();
+        initDecryptTextOnScroll();
+        initNavAndScrollHighlight();
+        initCtaButtons();
+        initMobileMenuToggle();
+        initProjectFiltering();
+        initSkillInfoOverlay();
+        initImageModal();
+        initCurrentYear();
+        initBackToTopButton();
+        initKonamiCode();
+        initAIVoiceToggle();
+        initTypedJS();
+        initLanguageToggle();
+        initDashboardToggle();
+        initDarkModeToggle();
+    }
+
+    function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = languageData[lang][key];
+
+            if (translation) {
+                if (element.tagName === 'TITLE') {
+                    document.title = translation;
+                } else if (element.tagName === 'META') {
+                    if (element.getAttribute('name') === 'description' || element.getAttribute('name') === 'keywords' ||
+                        element.getAttribute('property') === 'og:title' || element.getAttribute('property') === 'og:description') {
+                        element.setAttribute('content', translation);
+                    }
+                } else if (element.classList.contains('decrypt-text')) {
+                    element.setAttribute('data-text', translation);
+                    if (element.classList.contains('decrypted') || key === 'hero_title') {
+                         element.textContent = translation;
+                    } else {
+                        element.textContent = '';
+                        element.style.opacity = '0';
+                        element.classList.remove('scrambled');
+                        element.classList.remove('decrypted');
+                    }
+                } else if (element.hasAttribute('data-i18n-hover-title')) {
+                    element.querySelector('.skill-title').textContent = translation;
+                    element.setAttribute('data-hover-title', translation);
+                } else if (element.hasAttribute('data-i18n-hover-desc')) {
+                    element.querySelector('.skill-level-text').textContent = translation;
+                    element.setAttribute('data-hover-desc', translation);
+                } else if (element.classList.contains('project-title')) {
+                    element.textContent = translation;
+                    element.closest('.project-card').setAttribute('data-project-title', translation);
+                } else if (element.classList.contains('project-type')) {
+                    element.textContent = translation;
+                    element.closest('.project-card').setAttribute('data-project-type', translation);
+                } else if (element.classList.contains('project-desc')) {
+                    element.textContent = translation;
+                } else if (element.classList.contains('photo-overlay')) {
+                    element.textContent = translation;
+                    element.closest('.photo-item').setAttribute('data-photo-caption', translation);
+                } else if (element.classList.contains('cert-title')) {
+                    element.textContent = translation;
+                    element.closest('.certificate-item').setAttribute('data-cert-title', translation);
+                } else if (element.classList.contains('cert-issuer')) {
+                    element.textContent = translation;
+                    element.closest('.certificate-item').setAttribute('data-cert-issuer', translation);
+                } else if (element.classList.contains('timeline-title')) {
+                    element.textContent = translation;
+                    element.closest('.timeline-item').setAttribute('data-edu-title', translation);
+                } else if (element.classList.contains('timeline-period')) {
+                    element.textContent = translation;
+                    element.closest('.timeline-item').setAttribute('data-edu-period', translation);
+                } else if (element.classList.contains('timeline-role')) {
+                    element.textContent = translation;
+                    element.closest('.timeline-item').setAttribute('data-edu-role', translation);
+                } else if (element.classList.contains('timeline-desc')) {
+                    element.textContent = translation;
+                    element.closest('.timeline-item').setAttribute('data-edu-desc', translation);
+                } else if (element.id === 'back-to-top' && key === 'back_to_top_aria') {
+                    element.setAttribute('aria-label', translation);
+                } else {
+                    element.textContent = translation;
+                }
+            }
+        });
+
+        const profileSubtitleElement = document.querySelector('[data-i18n="profile_subtitle"]');
+        if (profileSubtitleElement) {
+            const highlightSpan = profileSubtitleElement.querySelector('[data-i18n="profile_subtitle_highlight"]');
+            if (highlightSpan) {
+                const originalFullText = languageData[lang]["profile_subtitle"];
+                const highlightText = languageData[lang]["profile_subtitle_highlight"];
+                if (originalFullText && highlightText) {
+                    profileSubtitleElement.setAttribute('data-text', originalFullText);
+                    profileSubtitleElement.textContent = originalFullText;
+                    highlightSpan.textContent = highlightText;
+                }
+            }
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        localStorage.setItem('selectedLanguage', lang);
+    }
+
+    let uptimeSeconds = 0;
+    let uptimeInterval;
+    const uptimeDisplay = document.getElementById('uptime-display');
+    const aiStatusElement = document.getElementById('ai-status');
+    const systemStatusDashboard = document.querySelector('.system-status-dashboard');
+
+    function initUptimeCounter() {
+        if (!uptimeDisplay) {
+            return;
+        }
+        if (uptimeInterval) clearInterval(uptimeInterval);
+
+        uptimeInterval = setInterval(() => {
+            uptimeSeconds++;
+            const hours = String(Math.floor(uptimeSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((uptimeSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(uptimeSeconds % 60).padStart(2, '0');
+            uptimeDisplay.innerHTML = `${hours}:${minutes}:${seconds}`;
+        }, 1000);
+    }
+
+    function initAIStatus(statusText = 'OFFLINE', color = HIGHLIGHT_COLORS.secondary) {
+        if (!aiStatusElement || !systemStatusDashboard) {
+            return;
+        }
+
+        aiStatusElement.textContent = statusText;
+        aiStatusElement.style.color = color;
+        aiStatusElement.style.textShadow = `0 0 5px ${color}`;
+
+        if (aiStatusElement._flickerInterval) clearInterval(aiStatusElement._flickerInterval);
+        aiStatusElement.classList.remove('online-flicker');
+
+        const isAIActive = statusText !== 'OFFLINE' && statusText !== languageData[document.documentElement.lang]["status_canvas_value"];
+        const isListeningOrProcessing = statusText === (languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...') ||
+                                        statusText === (languageData[document.documentElement.lang]["voice_status_processing"] || 'MEMPROSES...') ||
+                                        statusText === (languageData[document.documentElement.lang]["voice_status_speaking"] || 'MEMBICARAKAN...') ||
+                                        statusText === (languageData[document.documentElement.lang]["voice_error_general"] || 'GALAT');
+
+
+        if (isAIActive || isListeningOrProcessing) {
+            systemStatusDashboard.classList.remove('hidden-dashboard');
+            systemStatusDashboard.classList.add('show-dashboard');
+        } else {
+            systemStatusDashboard.classList.remove('show-dashboard');
+            systemStatusDashboard.classList.add('hidden-dashboard');
+        }
+
+        if (statusText === (languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...') || statusText === (languageData[document.documentElement.lang]["voice_status_active"] || 'AKTIF')) {
+            aiStatusElement.classList.add('online-flicker');
+        } else {
+            aiStatusElement.style.opacity = '1';
+        }
+    }
+
+    function initDashboardToggle() {
+        if (!systemStatusDashboard) {
+            return;
+        }
+
+        systemStatusDashboard.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                systemStatusDashboard.classList.toggle('expanded');
+            }
+        });
+    }
+
+    let recognition;
+    let synth;
+    let speaking = false;
+    let listening = false;
+    let aiContext = {};
+    const aiVoiceToggle = document.querySelector('.ai-voice-toggle');
+    let selectedVoiceForAI = null;
+    let audioContext;
+    let proactiveHelpTimer; 
+
+    const simulateThinking = (callback) => {
+        initAIStatus(languageData[document.documentElement.lang]["voice_status_processing"] || 'MEMPROSES...', HIGHLIGHT_COLORS.secondary);
+        setTimeout(() => {
+            callback();
+        }, 800);
+    };
+
+    const playSound = (type) => {
+        try {
+            if (!audioContext || audioContext.state === 'closed') {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            switch (type) {
+                case 'start_listening':
+                    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.08);
+                    break;
+                case 'stop_listening':
+                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.08);
+                    break;
+                case 'unrecognized':
+                    oscillator.type = 'sawtooth';
+                    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                    break;
+                case 'success':
+                    oscillator.frequency.setValueAtTime(980, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.08);
+                    break;
+            }
+        } catch (e) {
+        }
+    };
+
+    function findAndSetAIvoice() {
+        const voices = synth.getVoices();
+        let voiceFound = null;
+        const currentLang = document.documentElement.lang;
+
+        if (currentLang === 'id') {
+            voiceFound = voices.find(
+                voice => voice.lang === 'id-ID' &&
+                         (voice.name.includes('Google') && voice.name.includes('Bahasa Indonesia') ||
+                          voice.name.includes('id-ID') && voice.name.includes('Wavenet'))
+            );
+            if (!voiceFound) {
+                voiceFound = voices.find(
+                    voice => voice.lang === 'id-ID' && voice.name.includes('Google')
+                );
+            }
+            if (!voiceFound) {
+                voiceFound = voices.find(voice => voice.lang.startsWith('id'));
+            }
+        } else if (currentLang === 'en') {
+            voiceFound = voices.find(
+                voice => voice.lang === 'en-US' && voice.name.includes('Google') ||
+                         voice.lang === 'en-GB' && voice.name.includes('Google')
+            );
+            if (!voiceFound) {
+                voiceFound = voices.find(voice => voice.lang.startsWith('en'));
+            }
+        }
+
+        selectedVoiceForAI = voiceFound;
+    }
+
+    function startSpeechRecognition() {
+        if (listening) {
+            return;
+        }
+        if (!recognition) {
+            return;
+        }
+
+        try {
+            recognition.start();
+        } catch (e) {
+            if (e.message.includes("already started")) {
+            } else {
+                initAIStatus('GALAT', GLITCH_COLOR);
+                aiVoiceToggle.dataset.active = 'false';
+                aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Galat)');
+                speakText(languageData[document.documentElement.lang]["voice_error_start_recognition"] || "Maaf, tidak dapat memulai pengenalan suara. Pastikan mikrofon berfungsi dan izinkan akses.");
+                playSound('unrecognized');
+                clearTimeout(proactiveHelpTimer);
+            }
+        }
+    }
+
+    function initAIVoiceToggle() {
+        if (!aiVoiceToggle) {
+            return;
+        }
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const SpeechSynthesis = window.speechSynthesis;
+        const SpeechSynthesisUtterance = window.SpeechSynthesisUtterance;
+
+        if (!SpeechRecognition || !SpeechSynthesis || !SpeechSynthesisUtterance) {
+            aiVoiceToggle.style.display = 'none';
+            return;
+        }
+
+        synth = SpeechSynthesis;
+        synth.onvoiceschanged = findAndSetAIvoice;
+        if (synth.getVoices().length > 0) {
+            findAndSetAIvoice();
+        }
+
+        aiVoiceToggle.addEventListener('click', () => {
+            const isActive = aiVoiceToggle.dataset.active === 'true';
+
+            if (!isActive) {
+                aiVoiceToggle.dataset.active = 'true';
+                aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_active_title"] || 'Asisten Suara: AKTIF (Klik untuk Berhenti)');
+                initAIStatus('INISIALISASI...', HIGHLIGHT_COLORS.secondary);
+                playSound('start_listening');
+
+                recognition = new SpeechRecognition();
+                recognition.lang = document.documentElement.lang === 'id' ? 'id-ID' : 'en-US';
+                recognition.interimResults = false;
+                recognition.continuous = true;
+                recognition.maxAlternatives = 1;
+
+                recognition.onstart = () => {
+                    listening = true;
+                    initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
+                    aiVoiceToggle.querySelector('i').classList.add('fa-beat-fade');
+                    resetProactiveHelpTimer();
+                };
+
+                recognition.onresult = (event) => {
+                    const speechResult = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
+
+                    if (speechResult) {
+                        initAIStatus(languageData[document.documentElement.lang]["voice_status_processing"] || 'MEMPROSES...', HIGHLIGHT_COLORS.secondary);
+                        aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
+                        
+                        if (recognition && listening) {
+                            recognition.stop();
+                            listening = false;
+                        }
+
+                        simulateThinking(() => {
+                            let aiResponse = processVoiceCommand(speechResult);
+                            speakText(aiResponse, () => {
+                                if (aiContext.lastIntent === 'stop_command') {
+                                    aiVoiceToggle.dataset.active = 'false';
+                                    aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
+                                    initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
+                                    aiContext = {};
+                                    playSound('stop_listening');
+                                    clearTimeout(proactiveHelpTimer);
+                                } else if (aiVoiceToggle.dataset.active === 'true') {
+                                    startSpeechRecognition();
+                                }
+                            });
+                        });
+                    } else {
+                    }
+                };
+
+                recognition.onerror = (event) => {
+                    listening = false;
+                    aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
+                    
+                    let errorMessage = languageData[document.documentElement.lang]["voice_error_general"] || "Terjadi kesalahan pada pengenalan suara.";
+                    let shouldDeactivateToggle = true;
+
+                    if (event.error === 'not-allowed') {
+                        errorMessage = languageData[document.documentElement.lang]["voice_error_not_allowed"] || "Akses mikrofon ditolak. Mohon izinkan penggunaan mikrofon.";
+                    } else if (event.error === 'no-speech') {
+                        errorMessage = languageData[document.documentElement.lang]["voice_error_no_speech"] || "Tidak ada suara terdeteksi. Silakan coba lagi.";
+                        shouldDeactivateToggle = false; 
+                        if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
+                            initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
+                            startSpeechRecognition();
+                        } else {
+                            shouldDeactivateToggle = true;
+                        }
+                        return;
+                    } else if (event.error === 'network') {
+                        errorMessage = languageData[document.documentElement.lang]["voice_error_network"] || "Tidak ada koneksi internet untuk pengenalan suara. Mohon periksa koneksi Anda.";
+                    } else if (event.error === 'aborted') {
+                        if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
+                            aiVoiceToggle.dataset.active = 'false';
+                            aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
+                            initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
+                            aiContext = {};
+                            clearTimeout(proactiveHelpTimer);
+                            playSound('stop_listening');
+                        }
+                        return;
+                    }
+
+                    if (shouldDeactivateToggle) {
+                        initAIStatus('GALAT', GLITCH_COLOR);
+                        aiVoiceToggle.dataset.active = 'false';
+                        aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Galat)');
+                        aiContext = {};
+                        clearTimeout(proactiveHelpTimer);
+                        speakText(errorMessage);
+                        playSound('unrecognized');
+                    }
+                };
+
+                recognition.onend = () => {
+                    listening = false;
+                    aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
+                    if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
+                        initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
+                        startSpeechRecognition();
+                    } else if (aiVoiceToggle.dataset.active !== 'true' && !speaking) {
+                        initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
+                        aiContext = {};
+                        playSound('stop_listening');
+                        clearTimeout(proactiveHelpTimer);
+                    }
+                };
+
+                startSpeechRecognition();
+
+            } else {
+                aiVoiceToggle.dataset.active = 'false';
+                aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
+                if (recognition) { 
+                    recognition.stop();
+                    recognition = null;
+                }
+                listening = false;
+                if (synth && synth.speaking) {
+                    synth.cancel();
+                }
+                speaking = false;
+                aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
+                initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
+                aiContext = {};
+                playSound('stop_listening');
+                clearTimeout(proactiveHelpTimer);
+            }
+        });
+
+        synth.addEventListener('end', () => {
+            speaking = false;
+            if (aiContext.lastIntent === 'stop_command') {
+                aiVoiceToggle.dataset.active = 'false';
+                aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
+                initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
+                aiContext = {};
+                playSound('stop_listening');
+                clearTimeout(proactiveHelpTimer);
+            } else if (aiVoiceToggle.dataset.active === 'true') {
+                initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
+                startSpeechRecognition();
+            }
+        });
+
+        synth.addEventListener('start', () => {
+            speaking = true;
+            initAIStatus(languageData[document.documentElement.lang]["voice_status_speaking"] || 'MEMBICARAKAN...', HIGHLIGHT_COLORS.secondary);
+            if (recognition && listening) {
+                recognition.stop();
+                listening = false;
+            }
+        });
+    }
+
+    function matchCommand(command, keywords) {
+        command = command.toLowerCase().trim();
+
+        for (const keyword of keywords) {
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+            if (regex.test(command)) {
+                return true;
+            }
+        }
+
+        const commandWords = command.split(/\s+/).filter(word => word.length > 0);
+        for (const keyword of keywords) {
+            const keywordWords = keyword.split(/\s+/).filter(word => word.length > 0);
+            if (keywordWords.length === 0) continue;
+
+            let matchesInOrder = 0;
+            let currentCommandIndex = 0;
+            for (let i = 0; i < keywordWords.length; i++) {
+                const kw = keywordWords[i];
+                let found = false;
+                for (let j = currentCommandIndex; j < commandWords.length; j++) {
+                    if (commandWords[j].includes(kw)) {
+                        matchesInOrder++;
+                        currentCommandIndex = j + 1;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) break;
+            }
+            if (matchesInOrder === keywordWords.length && matchesInOrder > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const intents = {
+        id: {
+            greet: ['halo', 'hai', 'selamat pagi', 'selamat siang', 'selamat sore', 'selamat malam', 'hallo', 'hai deden'],
+            identity: ['siapa kamu', 'kamu siapa', 'tentang kamu', 'nama kamu siapa', 'jelaskan dirimu'],
+            time: ['jam berapa', 'sekarang jam berapa', 'pukul berapa'],
+            location: ['dimana kamu', 'lokasimu dimana', 'kamu di mana', 'dimana deden sekarang', 'lokasi deden'],
+            describeDeden: ['ceritakan tentang deden', 'deden itu siapa', 'profil deden', 'siapa deden hadiguna', 'jelaskan tentang deden', 'tentang dia'],
+            dedenAge: ['berapa umur deden', 'usia deden', 'deden berapa tahun'],
+            dedenHobbies: ['apa hobi deden', 'kegemaran deden', 'aktivitas deden', 'deden suka apa'],
+            thanks: ['terima kasih', 'makasih', 'thank you'],
+            downloadCV: ['download cv', 'unduh cv', 'ambil cv', 'dapatkan cv', 'download resume'],
+            openLink: {
+                linkedin: ['buka linkedin', 'pergi ke linkedin', 'linkedin deden', 'lihat linkedin'],
+                github: ['buka github', 'pergi ke github', 'github deden', 'lihat github', 'repositori deden'],
+                email: ['kirim email', 'email deden', 'alamat email', 'kirimi saya email'],
+                whatsapp: ['whatsapp deden', 'nomor whatsapp', 'kirim pesan whatsapp', 'kontak whatsapp', 'wa deden']
+            },
+            navigate: {
+                home: ['home', 'beranda', 'kembali ke home', 'halaman utama', 'pulang'],
+                about: ['tentang', 'profil', 'pergi ke tentang', 'tampilkan tentang', 'halaman tentang'],
+                skills: ['keahlian', 'skill', 'kemampuan', 'daftar keahlian', 'lihat skill', 'halaman keahlian'],
+                projects: ['proyek', 'portofolio', 'pekerjaan', 'lihat proyek', 'tampilkan proyek', 'halaman proyek'],
+                photos: ['foto', 'galeri', 'gambar', 'lihat foto', 'tampilkan foto', 'halaman foto'],
+                certificates: ['sertifikat', 'prestasi', 'lihat sertifikat', 'sertifikatnya', 'tampilkan sertifikat', 'halaman sertifikat'],
+                education: ['pendidikan', 'riwayat', 'riwayat pendidikan', 'latar belakang pendidikan', 'sekolah deden', 'lihat pendidikan', 'halaman pendidikan'],
+                contact: ['kontak', 'hubungi', 'informasi kontak', 'cara menghubungi', 'halaman kontak']
+            },
+            help: ['bantu saya', 'butuh bantuan', 'apa yang bisa saya lakukan', 'perintah apa saja', 'daftar perintah', 'apa saja yang bisa kamu lakukan', 'bantuan'],
+            stop: ['mati', 'berhenti', 'nonaktifkan', 'tutup', 'sudah', 'cukup', 'selesai', 'hentikan', 'matikan asisten'],
+            affirmation: ['ya', 'benar', 'betul', 'oke', 'setuju'],
+            negation: ['tidak', 'bukan', 'salah'],
+            queryProject: ['ceritakan tentang proyek', 'jelaskan proyek', 'detail proyek', 'informasi proyek', 'proyek'],
+            queryCert: ['ceritakan tentang sertifikat', 'jelaskan sertifikat', 'detail sertifikat', 'informasi sertifikat', 'sertifikat'],
+            queryEdu: ['ceritakan tentang pendidikan', 'jelaskan pendidikan', 'detail pendidikan', 'informasi pendidikan', 'pendidikan', 'riwayat']
+        },
+        en: {
+            greet: ['hello', 'hi', 'good morning', 'good afternoon', 'good evening', 'hallo', 'hi deden'],
+            identity: ['who are you', 'what are you', 'tell me about yourself', 'what is your name', 'explain yourself'],
+            time: ['what time is it', 'current time'],
+            location: ['where are you', 'your location', 'where is deden', 'deden\'s location'],
+            describeDeden: ['tell me about deden', 'who is deden', 'deden\'s profile', 'who is deden hadiguna', 'explain deden', 'about him'],
+            dedenAge: ['how old is deden', 'deden\'s age'],
+            dedenHobbies: ['what are deden\'s hobbies', 'deden\'s interests', 'deden\'s activities', 'what does deden like'],
+            thanks: ['thank you', 'thanks'],
+            downloadCV: ['download cv', 'download resume', 'get cv'],
+            openLink: {
+                linkedin: ['open linkedin', 'go to linkedin', 'deden\'s linkedin', 'view linkedin'],
+                github: ['open github', 'go to github', 'deden\'s github', 'view github', 'deden\'s repository'],
+                email: ['send email', 'deden\'s email', 'email address', 'email me'],
+                whatsapp: ['deden\'s whatsapp', 'whatsapp number', 'send whatsapp message', 'whatsapp contact', 'deden\'s wa']
+            },
+            navigate: {
+                home: ['home', 'go home', 'main page'],
+                about: ['about', 'profile', 'go to about', 'show about', 'about page'],
+                skills: ['skills', 'expertise', 'abilities', 'list skills', 'show skills', 'skills page'],
+                projects: ['projects', 'portfolio', 'work', 'view projects', 'show projects', 'projects page'],
+                photos: ['photos', 'gallery', 'pictures', 'view photos', 'show photos', 'photos page'],
+                certificates: ['certificates', 'achievements', 'view certificates', 'show certificates', 'certificates page'],
+                education: ['education', 'history', 'education history', 'educational background', 'deden\'s school', 'view education', 'education page'],
+                contact: ['contact', 'reach out', 'contact info', 'how to contact', 'contact page']
+            },
+            help: ['help me', 'need help', 'what can I do', 'what commands', 'list commands', 'what can you do', 'assistance'],
+            stop: ['stop', 'turn off', 'deactivate', 'close', 'enough', 'finished', 'done'],
+            affirmation: ['yes', 'correct', 'right', 'ok', 'agree'],
+            negation: ['no', 'not', 'wrong'],
+            queryProject: ['tell me about project', 'explain project', 'project details', 'project information', 'project'],
+            queryCert: ['tell me about certificate', 'explain certificate', 'certificate details', 'certificate information', 'certificate'],
+            queryEdu: ['tell me about education', 'explain education', 'education details', 'education information', 'education history', 'education']
+        }
+    };
+
+    const responseVariations = {
+        id: {
+            greet: [
+                'Halo kembali. Ada yang bisa saya bantu?',
+                'Hai! Apa yang bisa saya lakukan untuk Anda?',
+                'Selamat datang kembali. Ada pertanyaan?',
+                'Senang bisa berbicara dengan Anda.'
+            ],
+            identity: [
+                'Saya adalah asisten AI di portofolio Deden Hadiguna. Saya di sini untuk membantu Anda menjelajahi informasi.',
+                'Saya adalah antarmuka AI Deden. Saya dapat membantu Anda menemukan apa yang Anda cari di situs ini.',
+                'Anda berbicara dengan asisten virtual Deden Hadiguna. Senang bertemu dengan Anda.'
+            ],
+            time: (timeString) => [
+                `Sekarang pukul ${timeString} Waktu Indonesia Barat.`,
+                `Waktu saat ini adalah ${timeString} WIB.`,
+                `Pukul ${timeString} WIB sekarang.`
+            ],
+            location: (loc) => [
+                `Deden Hadiguna berlokasi di ${loc}.`,
+                `Saat ini Deden ada di ${loc}.`,
+                `Lokasi Deden adalah ${loc}.`
+            ],
+            aboutDedenFull: () => {
+                const aboutTextElement1 = document.querySelector('[data-i18n="about_me_p1"]');
+                const aboutTextElement2 = document.querySelector('[data-i18n="about_me_p2"]');
+                let text = '';
+                if (aboutTextElement1) {
+                    text += (languageData['id']['about_me_p1'] || aboutTextElement1.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                }
+                if (aboutTextElement2) {
+                    if (text) text += ' ';
+                    text += (languageData['id']['about_me_p2'] || aboutTextElement2.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                }
+                return text || 'Maaf, saya tidak dapat menemukan informasi lengkap tentang Deden saat ini.';
+            },
+            dedenAge: (age) => [
+                `Deden Hadiguna saat ini berumur sekitar ${age} tahun.`,
+                `Usia Deden adalah ${age} tahun.`,
+                `Menurut catatan saya, Deden berusia ${age} tahun.`
+            ],
+            dedenHobbies: (hobbies) => [
+                `Deden memiliki beberapa minat, antara lain ${hobbies}.`,
+                `Beberapa hobi dan kegemaran Deden adalah ${hobbies}.`,
+                `Dia suka melakukan ${hobbies}.`
+            ],
+            projectDetails: (title, type, tech) => [
+                `Proyek ${title} adalah proyek ${type}, menggunakan teknologi seperti ${tech}.`,
+                `${title} ini merupakan proyek ${type} yang dikembangkan dengan ${tech}.`
+            ],
+            certDetails: (title, issuer, date) => {
+                const dateText = date && date !== 'N/A' ? ` pada tahun ${date}` : '';
+                return [
+                    `Sertifikat ${title} diterbitkan oleh ${issuer}${dateText}.`,
+                    `Sertifikat ${title} ini berasal dari ${issuer}, yang diperoleh${dateText}.`
+                ];
+            },
+            eduDetails: (title, role, period, desc) => [
+                `Mengenai ${title}, Deden berperan sebagai ${role} pada periode ${period}. Deskripsinya adalah: ${desc}.`,
+                `Pendidikan atau aktivitas ${title} di mana Deden menjadi ${role} dari ${period}, dengan deskripsi: ${desc}.`
+            ],
+            thanks: [
+                'Sama-sama. Senang bisa membantu.',
+                'Dengan senang hati.',
+                'Tidak masalah.',
+                'Senang saya bisa membantu Anda.'
+            ],
+            unrecognized: [
+                'Maaf, saya tidak mengerti perintah itu. Bisakah Anda mengulanginya?',
+                'Saya kurang memahami. Bisakah Anda mencoba perintah lain?',
+                'Perintah tersebut tidak dikenali. Mohon berikan instruksi yang lebih jelas.',
+                'Saya tidak dapat memproses permintaan Anda. Perintah apa yang ingin Anda berikan?'
+            ],
+            confirmNavigation: (section) => [
+                `Baik, saya akan membawa Anda ke bagian ${section}.`,
+                `Mengganti tampilan ke ${section}.`,
+                `Menuju ke ${section}.`
+            ],
+            errorNotFound: (item) => [
+                `Maaf, saya tidak dapat menemukan ${item} yang Anda maksud.`,
+                `Tidak dapat menemukan ${item}. Mungkin ada kesalahan penulisan?`,
+                `Saya tidak bisa menemukan ${item}.`
+            ],
+            help: [
+                'Anda bisa meminta saya untuk "Tampilkan proyek", "Buka LinkedIn", "Ceritakan tentang Deden", atau bertanya "Jam berapa".',
+                'Saya dapat membantu Anda menavigasi situs ini. Coba katakan "Tampilkan keahlian" atau "Hubungi Deden".',
+                'Perintah yang saya pahami antara lain: navigasi halaman, buka tautan sosial, informasi tentang Deden, dan waktu saat ini.'
+            ],
+            fullHelp: () => {
+                const capabilities = [
+                    'Saya bisa menyapa Anda.',
+                    'Saya bisa memberi tahu siapa saya.',
+                    'Saya bisa memberi tahu waktu saat ini.',
+                    'Saya bisa memberi tahu lokasi Deden.',
+                    'Saya bisa menceritakan tentang Deden Hadiguna, termasuk keahlian, proyek, pendidikan, umur, dan hobinya.',
+                    'Saya bisa membantu Anda mengunduh CV Deden.',
+                    'Saya bisa membuka tautan sosial seperti LinkedIn, GitHub, email, atau WhatsApp Deden.',
+                    'Saya bisa menavigasi Anda ke berbagai bagian portofolio ini, seperti Home, About, Skills, Projects, Photos, Certificates, Education, dan Contact.',
+                    'Dan tentu saja, saya bisa memberikan bantuan seperti saat ini.'
+                ];
+                return 'Saya bisa melakukan beberapa hal. Contohnya, ' + capabilities.join(', ') + '. Apa yang ingin Anda lakukan?';
+            },
+            thinking: [
+                'Memproses...',
+                'Sebentar...',
+                'Menganalisis...'
+            ],
+            clarification: (question) => [
+                `Bisakah Anda lebih spesifik tentang ${question}?`,
+                `Anda ingin ${question} yang mana?`
+            ],
+            goodbye: [
+                'Baik, saya akan nonaktifkan. Sampai jumpa lagi!',
+                'Asisten dinonaktifkan. Silakan aktifkan kembali kapan saja Anda butuhkan.',
+                'Saya off. Hubungi saya jika Anda butuh bantuan.'
+            ],
+            proactiveHelp: [
+                "Apakah ada hal lain yang ingin Anda ketahui atau bagian yang ingin Anda kunjungi?",
+                "Ada lagi yang bisa saya bantu?",
+                "Jika Anda butuh bantuan, katakan 'bantu saya'."
+            ]
+        },
+        "en": {
+            "page_title": "Deden Hadiguna - Modern Portfolio",
+            "meta_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch. Explore a flowing personal data canvas.",
+            "meta_keywords": "Deden Hadiguna, AI developer, portfolio, machine learning, deep learning, web development, computer, Telkom University Purwokerto, modern design, clean portfolio",
+            "og_title": "Deden Hadiguna - Modern Portfolio",
+            "og_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch.",
+            "preloader_loading": "LOADING PORTFOLIO",
+            "preloader_status_label": "STATUS:",
+            "preloader_status_value": "ONLINE",
+            "system_status_ai": "AI Status",
+            "status_canvas_value": "OFFLINE",
+            "hero_title": "Deden Hadiguna",
+            "profile_subtitle": "Data Architect & AI Developer",
+            "profile_subtitle_highlight": "Data Architect & AI Developer",
+            "welcome_text": "Welcome to my personal portfolio",
+            "view_projects": "VIEW PROJECTS",
+            "download_cv": "DOWNLOAD CV",
+            "about_me_title": "About Me",
+            "about_me_p1": "Hello! I'm Deden Hadiguna, a proactive Computer Science student at Telkom University Purwokerto. My interests lie in Artificial Intelligence, Machine Learning, and Deep Learning, where I strive to create innovative solutions that empower technology.",
+            "about_me_p2": "My experience, though not always formal, is enriched by independent projects and certifications from programs like Merdeka Academy. This journey has shaped me into a proactive, team-oriented individual, ready to face professional challenges.",
+            "terminal_name_label": "Name:",
+            "profile_name_terminal": "Deden Hadiguna",
+            "terminal_role_label": "Role:",
+            "profile_role_terminal": "AI Developer / Computer Science Student",
+            "terminal_location_label": "Location:",
+            "profile_location_terminal": "Purwokerto, Central Java, Indonesia",
+            "terminal_status_label": "Status:",
+            "profile_status_terminal": "Innovating Non-stop",
+            "terminal_command_label": "Command:",
+            "terminal_command_value": "who_am_i",
+            "profile_response_terminal": "A passionate Computer Science student dedicated to creating intelligent systems and impactful solutions.",
+            "skills_title": "Skills & Expertise",
+            "skill_machine_learning_title": "Machine Learning",
+            "skill_machine_learning_desc": "Experienced in developing and deploying ML models using modern frameworks.",
+            "skill_deep_learning_title": "Deep Learning",
+            "skill_deep_learning_desc": "Proficient in neural networks and deep learning architectures.",
+            "skill_programming_title": "Programming",
+            "skill_programming_desc": "Strong foundation in multiple programming languages.",
+            "skill_data_db_title": "Data & Databases",
+            "skill_data_db_desc": "Database design, query optimization, and data management.",
+            "skill_tools_platforms_title": "Tools & Platforms",
+            "skill_tools_platforms_desc": "Familiarity with deployment, version control, and cloud platforms.",
+            "skill_cert_concepts_title": "Concepts & Certifications",
+            "skill_cert_concepts_desc": "Formal training and practical application of advanced AI concepts.",
+            "skill_overlay_title": "CANVAS_INFO:",
+            "skill_overlay_desc_default": "Hover over skill modules for detailed analysis.",
+            "projects_title": "Projects",
+            "all_filter": "ALL",
+            "computer_vision_filter": "COMPUTER VISION",
+            "nlp_filter": "NLP",
+            "machine_learning_filter": "MACHINE LEARNING",
+            "web_dev_filter": "WEB DEVELOPMENT",
+            "project_plant_disease_title": "Plant Disease Predictor",
+            "project_plant_disease_type": "Computer Vision / Deep Learning",
+            "project_plant_disease_desc": "Developed a CNN model to identify plant leaf diseases from images for early detection.",
+            "project_movie_sentiment_title": "Movie Review Sentiment Analysis",
+            "project_movie_sentiment_type": "NLP",
+            "project_movie_sentiment_desc": "Built a sentiment analysis system to classify movie reviews (positive/negative/neutral) using NLP techniques.",
+            "project_music_recom_title": "Music Recommendation System",
+            "project_music_recom_type": "Machine Learning / Data Mining",
+            "project_music_recom_desc": "Developed a music recommendation system based on collaborative filtering and content-based approaches.",
+            "project_portfolio_title": "Interactive Portfolio Interface",
+            "project_portfolio_type": "Web Development / Frontend",
+            "project_portfolio_desc": "This portfolio interface itself, designed with HTML, CSS, and JavaScript for a unique experience.",
+            "repo_link": "REPO",
+            "demo_link_disabled": "DEMO",
+            "report_link_disabled": "REPORT",
+            "live_link": "LIVE",
+            "photos_title": "Personal Moments",
+            "photos_campus_life": "Campus Life",
+            "photos_learning_session": "Learning Session",
+            "photos_group_project": "Group Project",
+            "photos_tech_event": "Tech Event",
+            "certificates_title": "Certificates",
+            "cert_general": "General Certificate",
+            "cert_issuer_professional_development": "Professional Development",
+            "cert_azure_ai": "Azure AI Fundamentals",
+            "cert_issuer_microsoft": "Microsoft Certified",
+            "cert_webinar_rise": "Webinar Rise Intelligent Future",
+            "cert_issuer_google_developer_student_clubs": "Google Developer Student Clubs",
+            "cert_webinar_nevcrypt": "Webinar Nevcrypt #2",
+            "cert_issuer_nevcrypt_community": "Nevcrypt Community",
+            "cert_javascript": "JavaScript Programming",
+            "cert_issuer_dicoding_indonesia": "Dicoding Indonesia",
+            "cert_other": "Other Certificates",
+            "cert_issuer_various_platforms": "Various Platforms",
+            "education_title": "Education & Activities",
+            "edu_telkom_university_purwokerto_title": "Telkom University Purwokerto",
+            "edu_telkom_university_purwokerto_period": "2023 - Present",
+            "edu_telkom_university_purwokerto_role": "Computer Science Student",
+            "edu_telkom_university_purwokerto_desc": "Currently pursuing a Bachelor's degree with a focus on Data Structures, Algorithms, Databases, and specialized Artificial Intelligence courses. Actively involved in group projects and personal development.",
+            "edu_calculus_teaching_assistant_title": "Azure AI Fundamentals Training",
+            "edu_calculus_teaching_assistant_period": "May 2025 - June 2025",
+            "edu_calculus_teaching_assistant_role": "Preparation Course for Azure AI Fundamentals (AI-900)",
+            "edu_calculus_teaching_assistant_desc": "The Azure AI Fundamentals Training program is designed for anyone interested in learning about the types of solutions artificial intelligence (AI) enables, and the services on Microsoft Azure.",
+            "edu_bangkit_academy_title": "Bangkit Academy by Google, GoTo, Traveloka",
+            "edu_bangkit_academy_period": "February 2024 - April 2024",
+            "edu_bangkit_academy_role": "Machine Learning Engineer Cohort",
+            "edu_bangkit_academy_desc": "Intensive program covering Python for ML, Machine Learning Fundamentals, Deep Learning Architectures, and AI Model Deployment using Google Cloud Platform (GCP). Completed a team capstone project.",
+            "edu_high_school_graduate_title": "High School Graduate",
+            "edu_high_school_graduate_period": "2020 - 2023",
+            "edu_high_school_graduate_role": "SMA Negeri 1 CabangBungin",
+            "edu_high_school_graduate_desc": "Graduated from the Science program. Actively involved in Information and Communication Technology (ICT) activities.",
+            "contact_title": "Contact Me",
+            "contact_intro": "Interested in collaborating on AI projects, discussing tech innovations, or have an opportunity to share? Feel free to reach out! I'm always open to new connections.",
+            "contact_email_title": "Email",
+            "contact_linkedin_title": "LinkedIn",
+            "contact_github_title": "GitHub",
+            "contact_whatsapp_title": "WhatsApp",
+            "back_to_top_aria": "Back to top",
+            "footer_rights": "All rights reserved.",
+            "home": "Home",
+            "about": "About",
+            "skills": "Skills",
+            "projects": "Projects",
+            "photos": "Photos",
+            "certificates": "Certificates",
+            "education": "Education",
+            "contact": "Contact",
+            "logo_text": "HDiignna DEV.",
+            "lang_id": "ID",
+            "lang_en": "EN",
+            "voice_assistant_active_title": "Voice Assistant: ACTIVE (Click to Stop)",
+            "voice_assistant_inactive_title": "Voice Assistant: INACTIVE (Click to Start)",
+            "voice_status_listening": "LISTENING...",
+            "voice_status_processing": "PROCESSING...",
+            "voice_status_speaking": "SPEAKING...",
+            "voice_status_inactive": "INACTIVE",
+            "voice_error_start_recognition": "Sorry, cannot start speech recognition. Make sure your microphone is working and allow access.",
+            "voice_error_general": "An error occurred with speech recognition.",
+            "voice_error_not_allowed": "Microphone access denied. Please allow microphone usage.",
+            "voice_error_no_speech": "No speech detected. Please try again.",
+            "voice_error_network": "No internet connection for speech recognition. Please check your connection.",
+            "loading_image": "LOADING IMAGE...",
+            "loading": "Loading",
+            "image_not_found_error": "ERROR: IMAGE NOT FOUND. Please check file path.",
+            "loading_error": "Error loading",
+            "check_file_path": "Check file path",
+            "konami_code_activated": "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.",
+            "link_opened_confirmation": (title) => `Okay, I will open Deden's ${title}.`,
+            "download_cv_confirmation": () => 'Okay, Deden Hadiguna\'s CV will be downloaded.',
+            "project": "project",
+            "certificate": "certificate",
+            "education_history": "education history",
+            "which_project": "which project",
+            "which_certificate": "which certificate",
+            "which_education_history": "which education history",
+            "skills_info": () => 'Certainly, these are Deden\'s skills. Is there any particular skill you\'d like to know more about?',
+            "projects_info": () => 'Here is a list of Deden\'s projects. Is there any specific project that catches your attention?',
+            "education_info": () => 'Here is Deden\'s education history. Any other questions?',
+            "contact_info": () => 'Certainly, here is Deden\'s contact information.',
+            "cv_link": "CV link",
+            "link": "link"
+        }
+    };
+
     const darkModeToggle = document.getElementById('darkModeToggle');
 
     function initDarkModeToggle() {
@@ -1732,6 +2653,7 @@
                         top: targetSection.offsetTop - navbarHeight + 1,
                         behavior: 'smooth'
                     });
+                    playSound('success');
                     const sideOverlayMenu = document.getElementById('sideOverlayMenu');
                     if (sideOverlayMenu && sideOverlayMenu.classList.contains('open')) {
                         sideOverlayMenu.classList.remove('open');
@@ -1970,8 +2892,9 @@
 
         draw() {
             if (!quantumCtx) return;
-            const hue = Math.random() * 60 + 180;
-            quantumCtx.fillStyle = `hsla(${hue}, 80%, 70%, ${this.opacity})`;
+            // Menggunakan warna aksen primer baru untuk partikel
+            const hue = Math.random() * 60 + 180; // This creates a blue-green hue
+            quantumCtx.fillStyle = `hsla(195, 80%, 60%, ${this.opacity})`; // Adjusted to be closer to Skyline blue
             quantumCtx.beginPath();
             quantumCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             quantumCtx.closePath();
@@ -2017,7 +2940,8 @@
 
                     if (distance < 150) {
                         if (!quantumCtx) return;
-                        quantumCtx.strokeStyle = `rgba(0, 191, 255, ${0.4 - (distance / 150) * 0.4})`;
+                        // Menggunakan rgba dari warna aksen primer baru
+                        quantumCtx.strokeStyle = `rgba(43, 192, 228, ${0.4 - (distance / 150) * 0.4})`;
                         quantumCtx.lineWidth = 0.8;
                         quantumCtx.beginPath();
                         quantumCtx.moveTo(this.x, this.y);
@@ -2094,8 +3018,8 @@
         const resetSkillOverlay = () => {
             skillOverlayValue.textContent = defaultOverlayValue;
             skillOverlayDesc.textContent = defaultOverlayDesc;
-            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary;
-            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary;
+            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary; // Menggunakan aksen sekunder baru
+            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary; // Menggunakan aksen tersier baru
         };
 
         skillCards.forEach(card => {
@@ -2106,8 +3030,8 @@
                 
                 skillOverlayValue.textContent = value;
                 skillOverlayDesc.textContent = desc;
-                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary;
-                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText;
+                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary; // Menggunakan aksen primer baru
+                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText; // Menggunakan warna darkText (sebenarnya teks biasa)
             };
 
             card.addEventListener('mouseenter', updateOverlay);
@@ -2183,8 +3107,8 @@
             loadingTextDiv.textContent = languageData[document.documentElement.lang]["loading_image"] || 'LOADING IMAGE...';
             modalContent.appendChild(loadingTextDiv);
 
-            modalContent.style.backgroundColor = HIGHLIGHT_COLORS.lightBg;
-            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Loading'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`;
+            modalContent.style.backgroundColor = HIGHLIGHT_COLORS.lightBg; // Menggunakan warna lightBg (dark)
+            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Loading'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`; // Menggunakan aksen tersier baru
             modal.style.display = "flex";
             modal.focus();
 
@@ -2207,12 +3131,12 @@
                 }
                 const errorTextDiv = document.createElement('div');
                 errorTextDiv.classList.add('modal-loading-text');
-                errorTextDiv.style.color = GLITCH_COLOR;
+                errorTextDiv.style.color = GLITCH_COLOR; // Menggunakan warna glitch baru
                 errorTextDiv.textContent = languageData[document.documentElement.lang]["image_not_found_error"] || 'ERROR: IMAGE NOT FOUND. Please check file path.';
                 modalContent.appendChild(errorTextDiv);
                 modalContent.style.backgroundColor = 'rgba(100, 0, 0, 0.8)';
                 modalImg.style.display = 'none';
-                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Error loading'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Check file path'})</span>`;
+                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Error loading'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Check file path'})</span>`; // Menggunakan warna glitch baru
             };
         });
 
