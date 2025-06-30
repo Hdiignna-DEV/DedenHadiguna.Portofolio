@@ -1,36 +1,35 @@
 :root {
-    --color-bg-primary: #EAECC6; /* Latar belakang utama: Warna Bora */
-    --color-bg-secondary: #F8F9EB; /* Latar belakang sekunder: Sedikit lebih gelap dari Bora untuk variasi dan kedalaman visual */
-    --color-text-dark: #212121; /* Warna teks gelap utama, tetap untuk kontras */
-    --color-text-muted: #616161; /* Warna teks abu-abu/muted, tetap */
-    --color-accent-primary: #2BC0E4; /* Warna aksen utama: Warna Skyline */
-    --color-accent-secondary: #FF6B6B; /* Warna aksen sekunder baru: Merah muda/coral lembut untuk kontras dan elemen dinamis */
-    --color-accent-tertiary: #5E6D7E; /* Warna aksen tersier baru: Abu-abu kebiruan gelap untuk teks sekunder atau elemen non-interaktif */
-    --color-shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan terang, tetap */
-    --color-shadow-medium: rgba(0, 0, 0, 0.1); /* Bayangan sedang, tetap */
-    --border-light: #D1D8BE; /* Warna border terang: Disesuaikan agar cocok dengan warna latar Bora */
-    --card-bg-light: #FFFFFF; /* Latar belakang kartu terang, tetap putih untuk kebersihan */
-    --glass-blur-amount: 15px; /* Efek blur kaca, tetap */
-    --glass-bg-opacity: 0.9; /* Opasitas latar belakang kaca, tetap */
-    --border-radius-card: 8px; /* Radius border kartu, tetap */
-    --border-radius-button: 6px; /* Radius border tombol, tetap */
-    --transition-speed: 0.3s; /* Kecepatan transisi, tetap */
-    --header-height-desktop: 80px; /* Tinggi header desktop, tetap */
-    --header-height-mobile: 60px; /* Tinggi header mobile, tetap */
-    --color-glitch-effect: #FF4F4F; /* Warna efek glitch: Diperbarui menjadi merah yang lebih cerah */
+    --color-bg-primary: #EAECC6; /* Bora */
+    --color-bg-secondary: #F8F9EB; /* Sedikit lebih gelap dari Bora untuk variasi */
+    --color-text-dark: #212121;
+    --color-text-muted: #616161;
+    --color-accent-primary: #2BC0E4; /* Skyline */
+    --color-accent-secondary: #FF6B6B; /* Aksen sekunder baru */
+    --color-accent-tertiary: #5E6D7E; /* Aksen tersier baru */
+    --color-shadow-light: rgba(0, 0, 0, 0.05);
+    --color-shadow-medium: rgba(0, 0, 0, 0.1);
+    --border-light: #D1D8BE; /* Border yang cocok dengan Bora */
+    --card-bg-light: #FFFFFF; /* Bisa tetap putih atau disesuaikan ke Bora */
+    --glass-blur-amount: 15px;
+    --glass-bg-opacity: 0.9;
+    --border-radius-card: 8px;
+    --border-radius-button: 6px;
+    --transition-speed: 0.3s;
+    --header-height-desktop: 80px;
+    --header-height-mobile: 60px;
+    --color-glitch-effect: #FF4F4F; /* Glitch color yang diperbarui */
 
-    /* Variabel Warna Dark Mode */
-    --dark-mode-bg-primary: #1A202C; /* Latar belakang utama dark mode, tetap */
-    --dark-mode-bg-secondary: #2D3748; /* Latar belakang sekunder dark mode, tetap */
-    --dark-mode-text-light: #F2F4F7; /* Warna teks terang dark mode: Sedikit lebih cerah untuk keterbacaan */
-    --dark-mode-text-muted: #BCCCDC; /* Warna teks muted dark mode: Diperbarui */
-    --dark-mode-border: #4A5568; /* Warna border dark mode, tetap */
-    --dark-mode-card-bg: #2D3748; /* Latar belakang kartu dark mode, tetap */
-    --dark-mode-shadow-light: rgba(0, 0, 0, 0.2); /* Bayangan terang dark mode, tetap */
-    --dark-mode-shadow-medium: rgba(0, 0, 0, 0.4); /* Bayangan sedang dark mode, tetap */
+    /* Dark Mode Colors */
+    --dark-mode-bg-primary: #1A202C;
+    --dark-mode-bg-secondary: #2D3748;
+    --dark-mode-text-light: #F2F4F7;
+    --dark-mode-text-muted: #BCCCDC;
+    --dark-mode-border: #4A5568;
+    --dark-mode-card-bg: #2D3748;
+    --dark-mode-shadow-light: rgba(0, 0, 0, 0.2);
+    --dark-mode-shadow-medium: rgba(0, 0, 0, 0.4);
 }
 
-/* --- Global Styles --- */
 body.dark-mode {
     background-color: var(--dark-mode-bg-primary);
     color: var(--dark-mode-text-light);
@@ -57,7 +56,6 @@ body.dark-mode .section-subtitle, body.dark-mode .section-description, body.dark
     color: var(--dark-mode-text-muted);
 }
 
-/* --- Preloader Styles --- */
 body.dark-mode #preloader {
     background-color: var(--dark-mode-bg-primary);
 }
@@ -71,7 +69,6 @@ body.dark-mode .preloader-bar {
 }
 
 body.dark-mode .preloader-bar::after {
-    /* Menggunakan color-accent-primary untuk bayangan di dark mode agar konsisten dengan tema baru */
     box-shadow: 0 0 8px var(--color-accent-primary);
 }
 
@@ -80,7 +77,6 @@ body.dark-mode #preloader::before {
                 radial-gradient(circle at center, rgba(255,255,255,0.02) 1px, transparent 1px);
 }
 
-/* --- System Status Dashboard Styles --- */
 body.dark-mode .system-status-dashboard {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -88,7 +84,6 @@ body.dark-mode .system-status-dashboard {
     color: var(--dark-mode-text-light);
 }
 
-/* --- Navbar Styles --- */
 body.dark-mode .navbar {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -104,8 +99,7 @@ body.dark-mode .nav-links .nav-link {
 }
 
 body.dark-mode .nav-links .nav-link.active {
-    /* Menggunakan rgba dari color-accent-primary baru untuk active state di dark mode */
-    background-color: rgba(43, 192, 228, 0.2); /* rgba dari #2BC0E4 */
+    background-color: rgba(63, 81, 181, 0.2);
 }
 
 body.dark-mode .lang-btn {
@@ -129,7 +123,7 @@ body.dark-mode .dark-mode-toggle {
 body.dark-mode .ai-voice-toggle:hover,
 body.dark-mode .dark-mode-toggle:hover {
     background-color: var(--dark-mode-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru untuk hover */
+    color: var(--color-accent-primary);
 }
 
 body.dark-mode .menu-toggle {
@@ -152,17 +146,14 @@ body.dark-mode .side-overlay-menu .nav-link {
 
 body.dark-mode .side-overlay-menu .nav-link:hover,
 body.dark-mode .side-overlay-menu .nav-link:focus-visible {
-    /* Menggunakan rgba dari color-accent-primary baru untuk hover/focus di dark mode */
-    background-color: rgba(43, 192, 228, 0.2); /* rgba dari #2BC0E4 */
+    background-color: rgba(63, 81, 181, 0.2);
     color: var(--color-accent-primary);
 }
 
 body.dark-mode .side-overlay-menu .nav-link.active {
-    /* Menggunakan rgba dari color-accent-primary baru untuk active state di dark mode */
-    background-color: rgba(43, 192, 228, 0.3); /* rgba dari #2BC0E4 */
+    background-color: rgba(63, 81, 181, 0.3);
 }
 
-/* --- Section Content Styles --- */
 body.dark-mode .section-content {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -180,7 +171,6 @@ body.dark-mode .decrypt-text .decrypt-pseudo-content {
     color: var(--dark-mode-text-light);
 }
 
-/* --- CTA Buttons Styles --- */
 body.dark-mode .cta-button.primary {
     background-color: var(--dark-mode-text-light);
     color: var(--dark-mode-bg-primary);
@@ -188,7 +178,7 @@ body.dark-mode .cta-button.primary {
 }
 
 body.dark-mode .cta-button.primary:hover {
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru untuk hover */
+    background-color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -200,11 +190,10 @@ body.dark-mode .cta-button.secondary {
 
 body.dark-mode .cta-button.secondary:hover {
     background-color: var(--dark-mode-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru untuk hover */
+    color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
 }
 
-/* --- Profile Avatar Styles --- */
 body.dark-mode .profile-avatar {
     border-color: var(--dark-mode-bg-primary);
 }
@@ -243,7 +232,6 @@ body.dark-mode .comment-code {
     color: var(--dark-mode-text-muted);
 }
 
-/* --- Skill Card Styles --- */
 body.dark-mode .skill-card {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -271,7 +259,6 @@ body.dark-mode .skill-info-overlay .info-desc {
     color: var(--dark-mode-text-muted);
 }
 
-/* --- Filter Buttons Styles --- */
 body.dark-mode .filter-btn {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -280,11 +267,10 @@ body.dark-mode .filter-btn {
 
 body.dark-mode .filter-btn:hover {
     background-color: var(--dark-mode-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru untuk hover */
+    color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
 }
 
-/* --- Project Card Styles --- */
 body.dark-mode .project-card {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -307,7 +293,7 @@ body.dark-mode .project-link {
 
 body.dark-mode .project-link:hover {
     background-color: var(--dark-mode-bg-secondary);
-    border-color: var(--color-accent-primary); /* Menggunakan aksen primer baru untuk hover */
+    border-color: var(--color-accent-primary);
     color: var(--color-accent-primary);
 }
 
@@ -316,13 +302,11 @@ body.dark-mode .project-link.disabled {
     border-color: var(--dark-mode-border);
 }
 
-/* --- Photo Item Styles --- */
 body.dark-mode .photo-item {
     background: var(--dark-mode-card-bg);
     box-shadow: 0 2px 10px var(--dark-mode-shadow-medium);
 }
 
-/* --- Certificate Item Styles --- */
 body.dark-mode .certificate-item {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -333,7 +317,6 @@ body.dark-mode .cert-title {
     color: var(--dark-mode-text-light);
 }
 
-/* --- Image Modal Styles --- */
 body.dark-mode #image-modal.modal .modal-content {
     background-color: var(--dark-mode-card-bg);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
@@ -351,7 +334,6 @@ body.dark-mode .close-button {
     color: var(--dark-mode-text-light);
 }
 
-/* --- Timeline Styles --- */
 body.dark-mode .timeline-line {
     background: var(--dark-mode-border);
 }
@@ -366,7 +348,6 @@ body.dark-mode .timeline-title {
     color: var(--dark-mode-text-light);
 }
 
-/* --- Contact Card Styles --- */
 body.dark-mode .contact-card {
     background: var(--dark-mode-card-bg);
     border-color: var(--dark-mode-border);
@@ -381,7 +362,6 @@ body.dark-mode .contact-info a {
     color: var(--dark-mode-text-light);
 }
 
-/* --- Footer Styles --- */
 body.dark-mode .footer {
     background-color: var(--dark-mode-bg-secondary);
     color: var(--dark-mode-text-muted);
@@ -400,7 +380,6 @@ body.dark-mode #back-to-top {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Base Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -457,9 +436,8 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     color: var(--color-text-muted);
 }
 
-/* --- Preloader Specific Styles --- */
 #preloader {
-    background-color: var(--color-bg-primary); /* Menggunakan variabel warna baru */
+    background-color: #F8F8F8;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -500,9 +478,9 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 @keyframes icon-pulse {
-    0% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 10px rgba(43, 192, 228, 0.4); } /* Updated to rgba of --color-accent-primary */
-    50% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 20px rgba(43, 192, 228, 0.8); } /* Updated to rgba of --color-accent-primary */
-    100% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 10px rgba(43, 192, 228, 0.4); } /* Updated to rgba of --color-accent-primary */
+    0% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 10px rgba(63, 81, 181, 0.4); }
+    50% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 20px rgba(63, 81, 181, 0.8); }
+    100% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 10px rgba(63, 81, 181, 0.4); }
 }
 
 .preloader-text {
@@ -511,7 +489,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     font-weight: 500;
     text-align: center;
     line-height: 1.4;
-    color: var(--color-text-dark); /* Menggunakan variabel warna baru */
+    color: #212121;
     text-shadow: none;
     margin-bottom: 25px;
     padding: 0 20px;
@@ -560,7 +538,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 .preloader-bar {
     width: 250px;
     height: 8px;
-    background: var(--border-light); /* Menggunakan variabel warna baru */
+    background: #E0E0E0;
     border-radius: 4px;
     overflow: hidden;
     position: relative;
@@ -578,8 +556,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     background-color: var(--color-accent-primary);
     animation: load-bar 1.2s forwards ease-out;
     border-radius: 4px;
-    /* Updated to rgba of --color-accent-primary for consistent glow */
-    box-shadow: 0 0 8px rgba(43, 192, 228, 0.6);
+    box-shadow: 0 0 8px rgba(63, 81, 181, 0.6);
 }
 
 @keyframes load-bar {
@@ -609,7 +586,6 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     to { background-position: 200px 200px, 210px 210px; }
 }
 
-/* --- System Status Dashboard Styles --- */
 .system-status-dashboard {
     position: fixed;
     bottom: 20px;
@@ -661,7 +637,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 @keyframes flicker {
     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
         opacity: 1;
-        color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+        color: var(--color-accent-primary);
     }
     20%, 24%, 55% {
         opacity: 0.5;
@@ -678,15 +654,15 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 .highlight-accent-primary {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
 }
 
 .highlight-accent-secondary {
-    color: var(--color-accent-secondary); /* Menggunakan aksen sekunder baru */
+    color: var(--color-accent-secondary);
 }
 
 .highlight-accent-tertiary {
-    color: var(--color-accent-tertiary); /* Menggunakan aksen tersier baru */
+    color: var(--color-accent-tertiary);
 }
 
 .section-code-line {
@@ -717,9 +693,9 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 .code-block-snippet {
-    background: #EEEEEE; /* Background kode, bisa dipertimbangkan untuk menggunakan var(--color-bg-secondary) */
+    background: #EEEEEE;
     border: 1px solid var(--border-light);
-    border-left: 4px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    border-left: 4px solid var(--color-accent-primary);
     border-radius: var(--border-radius-card);
     padding: 20px;
     margin: 30px 0;
@@ -740,31 +716,31 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 .keyword-code {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     font-weight: 600;
 }
 
 .function-code {
-    color: var(--color-accent-tertiary); /* Menggunakan aksen tersier baru */
+    color: var(--color-accent-tertiary);
     font-weight: 600;
 }
 
 .param-code {
-    color: var(--color-accent-secondary); /* Menggunakan aksen sekunder baru */
+    color: var(--color-accent-secondary);
 }
 
 .return-code {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     font-weight: 600;
 }
 
 .error-code {
-    color: var(--color-glitch-effect); /* Menggunakan warna glitch baru */
+    color: #E74C3C;
     animation: text-glitch 0.8s infinite alternate;
 }
 
 .string-code {
-    color: var(--color-accent-tertiary); /* Menggunakan aksen tersier baru */
+    color: var(--color-accent-tertiary);
 }
 
 .terminal-text-response {
@@ -777,20 +753,21 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
         transform: translate(0, 0);
     }
     25% {
-        text-shadow: 1px 0 var(--color-glitch-effect), -1px 0 var(--color-accent-primary); /* Menggunakan warna glitch dan aksen primer baru */
+        text-shadow: 1px 0 #E74C3C, -1px 0 var(--color-accent-primary);
         transform: translate(-1px, 0);
     }
     50% {
-        text-shadow: -1px 0 var(--color-accent-secondary), 1px 0 var(--color-glitch-effect); /* Menggunakan aksen sekunder dan warna glitch baru */
+        text-shadow: -1px 0 var(--color-accent-secondary), 1px 0 #E74C3C;
         transform: translate(1px, 0);
     }
     75% {
-        text-shadow: 1px 0 var(--color-glitch-effect), -1px 0 var(--color-accent-primary); /* Menggunakan warna glitch dan aksen primer baru */
+        text-shadow: 1px 0 #E74C3C, -1px 0 var(--color-accent-primary);
         transform: translate(-1px, 0);
     }
 }
 
-/* --- Navbar Styles --- */
+
+
 .navbar {
     position: fixed;
     top: 0;
@@ -828,7 +805,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 .navbar .logo:hover {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
 }
 
 .navbar .logo::after {
@@ -838,7 +815,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent); /* Menggunakan aksen primer baru */
+    background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
     transform: scaleX(0);
     transition: transform var(--transition-speed) ease-out;
     transform-origin: center;
@@ -884,7 +861,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     transition: all var(--transition-speed) cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform: translateX(-50%);
     border-radius: 1px;
@@ -895,33 +872,30 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 .nav-links .nav-link:focus-visible::before {
     width: 100%;
     opacity: 1;
-    /* Updated to rgba of --color-accent-primary for consistent glow */
-    box-shadow: 0 0 5px rgba(43, 192, 228, 0.4);
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.4);
 }
 
 .nav-links .nav-link.active::before {
     width: 100%;
     opacity: 1;
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
-    /* Updated to rgba of --color-accent-primary for consistent glow */
-    box-shadow: 0 0 5px rgba(43, 192, 228, 0.6);
+    background-color: var(--color-accent-primary);
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.6);
 }
 
 .nav-links .nav-link:hover,
 .nav-links .nav-link:focus-visible {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     transform: translateY(-2px);
 }
 
 .nav-links .nav-link.active {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     transform: translateY(0);
-    /* Updated to rgba of --color-accent-primary */
-    background-color: rgba(43, 192, 228, 0.08);
+    background-color: rgba(63, 81, 181, 0.08);
 }
 
 .nav-links .nav-link:focus-visible {
-    outline: 2px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -957,13 +931,13 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 }
 
 .lang-btn.active {
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     color: white;
     font-weight: 600;
 }
 
 .lang-btn:focus-visible {
-    outline: 2px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
     z-index: 1;
 }
@@ -988,11 +962,11 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 .ai-voice-toggle:hover,
 .dark-mode-toggle:hover {
     background-color: var(--color-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
 }
 
 .ai-voice-toggle[data-active="true"] {
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     color: white;
     animation: pulse-microphone 1s infinite alternate;
 }
@@ -1008,7 +982,7 @@ h1, h2, h3, .logo, .skill-title, .project-title, .timeline-title, .contact-title
 
 .ai-voice-toggle:focus-visible,
 .dark-mode-toggle:focus-visible {
-    outline: 2px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -1037,11 +1011,11 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .menu-toggle:hover {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
 }
 
 .menu-toggle:focus-visible {
-    outline: 2px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -1105,19 +1079,17 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .side-overlay-menu .nav-link:hover,
 .side-overlay-menu .nav-link:focus-visible {
-    /* Updated to rgba of --color-accent-primary */
-    background-color: rgba(43, 192, 228, 0.08);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: rgba(63, 81, 181, 0.08);
+    color: var(--color-accent-primary);
 }
 
 .side-overlay-menu .nav-link.active {
-    /* Updated to rgba of --color-accent-primary */
-    background-color: rgba(43, 192, 228, 0.15);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: rgba(63, 81, 181, 0.15);
+    color: var(--color-accent-primary);
     font-weight: 600;
 }
 
-/* --- Section Layouts --- */
+
 .section {
     padding: 100px 0;
     max-width: 1200px;
@@ -1158,7 +1130,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     text-align: center;
     margin-bottom: 1rem;
     font-family: sans-serif;
-    color: var(--color-text-muted); /* Menggunakan variabel warna baru */
+    color: #333;
 }
 
 .decrypt-text {
@@ -1183,7 +1155,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     color: var(--color-text-dark);
 }
 
-/* --- Hero Section Styles --- */
 .hero {
     min-height: calc(100vh - var(--header-height-desktop));
     padding-top: 50px;
@@ -1212,7 +1183,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .typed-cursor {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     font-size: 1.2em;
     animation: blink 0.6s infinite;
 }
@@ -1262,7 +1233,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .cta-button.primary:hover {
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1276,18 +1247,16 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .cta-button.secondary:hover {
     background-color: var(--color-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Profile Avatar Styles --- */
 .profile-avatar-frame {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    /* Menggunakan aksen primer dan sekunder baru */
     background: linear-gradient(45deg, var(--color-accent-primary), var(--color-accent-secondary));
     padding: 5px;
     position: relative;
@@ -1305,8 +1274,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
         box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     }
     to {
-        /* Updated to rgba of --color-accent-primary */
-        box-shadow: 0 0 15px rgba(43, 192, 228, 0.4);
+        box-shadow: 0 0 15px rgba(63, 81, 181, 0.4);
     }
 }
 
@@ -1327,7 +1295,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--color-bg-primary); /* Menggunakan latar belakang primer baru */
+    border: 3px solid var(--color-bg-primary);
 }
 
 .status-indicator {
@@ -1337,9 +1305,9 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: var(--color-accent-tertiary); /* Menggunakan aksen tersier baru */
-    border: 3px solid var(--color-bg-primary); /* Menggunakan latar belakang primer baru */
-    box-shadow: 0 0 8px var(--color-accent-tertiary); /* Menggunakan aksen tersier baru */
+    background-color: var(--color-accent-tertiary);
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 8px var(--color-accent-tertiary);
     animation: statusPulse 1.5s infinite ease-in-out;
 }
 
@@ -1358,7 +1326,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     }
 }
 
-/* --- About Section Styles --- */
 .about-content {
     text-align: center;
 }
@@ -1382,7 +1349,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .profile-header-bar {
-    background: #EEEEEE; /* Background header terminal, bisa dipertimbangkan menggunakan var(--border-light) */
+    background: #EEEEEE;
     padding: 8px 15px;
     border-bottom: 1px solid var(--border-light);
     font-family: 'Fira Code', monospace;
@@ -1409,7 +1376,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     font-weight: 500;
 }
 
-/* --- Skills Section Styles --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1436,8 +1402,8 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .skill-icon {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
     font-size: 3.5rem;
+    color: var(--color-accent-primary);
     margin-bottom: 15px;
 }
 
@@ -1485,7 +1451,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .skill-level-bar div {
     height: 100%;
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     border-radius: 3px;
     transition: width 1s ease-out;
 }
@@ -1506,7 +1472,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     font-family: 'Outfit', sans-serif;
     font-size: 1.1rem;
     margin-bottom: 8px;
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     font-weight: 700;
 }
 
@@ -1515,7 +1481,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 10px;
-    color: var(--color-accent-secondary); /* Menggunakan aksen sekunder baru */
+    color: var(--color-accent-secondary);
 }
 
 .skill-info-overlay .info-desc {
@@ -1524,7 +1490,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     color: var(--color-text-muted);
 }
 
-/* --- Project Filters Styles --- */
 .filter-buttons-container {
     display: flex;
     justify-content: center;
@@ -1551,25 +1516,23 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .filter-btn:hover {
     background-color: var(--color-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
 }
 
 .filter-btn.active {
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     color: white;
     border-color: var(--color-accent-primary);
-    /* Updated to rgba of --color-accent-primary */
-    box-shadow: 0 2px 8px rgba(43, 192, 228, 0.3);
+    box-shadow: 0 2px 8px rgba(63, 81, 181, 0.3);
     pointer-events: none;
 }
 
 .filter-btn:focus-visible {
-    outline: 2px solid var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
-/* --- Projects Grid Styles --- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1622,9 +1585,9 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .project-type {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
+    color: var(--color-accent-primary);
     margin-bottom: 15px;
 }
 
@@ -1673,8 +1636,8 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .project-link:hover {
     background-color: var(--color-bg-secondary);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
     border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
 }
 
 .project-link.disabled {
@@ -1685,7 +1648,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     background-color: transparent;
 }
 
-/* --- Photos Grid Styles --- */
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1738,7 +1700,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     opacity: 1;
 }
 
-/* --- Certificates Grid Styles --- */
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1790,7 +1751,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     text-align: center;
 }
 
-/* --- Image Modal Styles --- */
 #image-modal.modal {
     background-color: rgba(0, 0, 0, 0.8);
     display: none;
@@ -1860,10 +1820,9 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .close-button:hover {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
 }
 
-/* --- Timeline Styles --- */
 .timeline-container {
     position: relative;
     padding-left: 30px;
@@ -1901,10 +1860,10 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     top: 25px;
     width: 12px;
     height: 12px;
-    background: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background: var(--color-accent-primary);
     border-radius: 50%;
     z-index: 1;
-    border: 2px solid var(--color-bg-primary); /* Menggunakan latar belakang primer baru */
+    border: 2px solid var(--color-bg-primary);
 }
 
 .timeline-content {
@@ -1927,7 +1886,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 .timeline-role {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     font-weight: 500;
     margin-bottom: 10px;
 }
@@ -1939,7 +1898,6 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     line-height: 1.5;
 }
 
-/* --- Contact Section Styles --- */
 .contact-intro-text {
     max-width: 700px;
     margin: 0 auto 40px;
@@ -1971,7 +1929,7 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .contact-icon {
     font-size: 3rem;
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     margin-bottom: 15px;
     transition: all var(--transition-speed) ease;
 }
@@ -1995,13 +1953,12 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 .contact-info a:hover {
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     text-decoration: underline;
 }
 
-/* --- Footer Styles --- */
 .footer {
-    background-color: var(--color-text-dark); /* Menggunakan warna teks gelap sebagai latar belakang footer */
+    background-color: var(--color-text-dark);
     padding: 40px 0;
     color: white;
     font-family: 'Inter', sans-serif;
@@ -2038,11 +1995,10 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 
 .social-link:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    color: var(--color-accent-primary);
     transform: translateY(-3px);
 }
 
-/* --- Quantum Canvas Background --- */
 .quantum-canvas-bg {
     position: fixed;
     top: 0;
@@ -2055,12 +2011,11 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
     transition: opacity var(--transition-speed) ease;
 }
 
-/* --- Back to Top Button --- */
 #back-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--color-accent-primary); /* Menggunakan aksen primer baru */
+    background-color: var(--color-accent-primary);
     color: white;
     border: none;
     border-radius: 50%;
@@ -2086,11 +2041,10 @@ body.dark-mode .dark-mode-toggle .fas.fa-sun {
 }
 
 #back-to-top:hover {
-    background-color: var(--color-accent-secondary); /* Menggunakan aksen sekunder baru untuk hover */
+    background-color: var(--color-accent-secondary);
     transform: translateY(-5px);
 }
 
-/* --- Overclock Mode Styles --- */
 body.overclock-mode {
     animation: background-pulse 0.3s infinite alternate;
 }
@@ -2108,7 +2062,6 @@ body.overclock-mode .quantum-canvas-bg {
     opacity: 0.15;
 }
 
-/* --- Media Queries --- */
 @media (max-width: 1200px) {
     .section {
         max-width: 960px;
@@ -2373,4 +2326,4 @@ body.overclock-mode .quantum-canvas-bg {
     .system-status-dashboard {
         bottom: 70px;
         right: 10px;
-    }
+    }}
