@@ -2,12 +2,12 @@
     "use strict";
 
     const HIGHLIGHT_COLORS = {
-        primary: '#00BFFF',
-        secondary: '#FF00FF',
-        tertiary: '#39FF14',
-        darkText: '#E2E8F0',
-        lightBg: '#1A202C',
-        glitch: '#E74C3C'
+        primary: '#FF5938', // Orange/Coral from --color-accent-primary
+        secondary: '#97DDEB', // Light Blue from --color-accent-secondary
+        tertiary: '#004A4A', // Dark Teal from --color-accent-tertiary
+        darkText: '#FFD1E2', // Pinkish from --color-text-dark
+        lightBg: '#134D80', // Dark Blue from --card-bg-light
+        glitch: '#97DDEB' // Light Blue from --color-glitch-effect (secondary accent)
     };
     const GLITCH_COLOR = HIGHLIGHT_COLORS.glitch;
 
@@ -27,6 +27,8 @@
             "profile_subtitle": "Arsitek Data & Pengembang AI",
             "profile_subtitle_highlight": "Arsitek Data & Pengembang AI",
             "welcome_text": "Selamat datang di portofolio pribadi saya",
+            "thank_you_text": "Alowwwww semuanyaaaa ☺️",
+            "voice_info_text": "Tersedia fitur voice dengan klik icon headphone di atas, bunyi ketika aktif. Ucapkan \"Bantu saya\" nanti akan bersuara dan menyebutkan apa saja yang bisa dilakukannya",
             "view_projects": "LIHAT PROYEK",
             "download_cv": "UNDUH CV",
             "about_me_title": "Tentang Saya",
@@ -43,7 +45,7 @@
             "terminal_command_label": "Perintah:",
             "terminal_command_value": "siapa_saya",
             "profile_response_terminal": "Seorang mahasiswa Teknik Informatika yang bersemangat dalam menciptakan sistem cerdas dan solusi berdampak.",
-            "skills_title": "Keahlian & Keahlian",
+            "skills_title": "Keterampilan & Keahlian",
             "skill_machine_learning_title": "Machine Learning",
             "skill_machine_learning_desc": "Berpengalaman dalam mengembangkan dan menerapkan model ML menggunakan framework modern.",
             "skill_deep_learning_title": "Deep Learning",
@@ -165,6 +167,299 @@
             "contact_info": () => 'Tentu, ini adalah informasi kontak Deden.',
             "cv_link": "tautan CV",
             "link": "tautan"
+        },
+        "en": {
+            "page_title": "Deden Hadiguna - Modern Portfolio",
+            "meta_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch. Explore a flowing personal data canvas.",
+            "meta_keywords": "Deden Hadiguna, AI developer, portfolio, machine learning, deep learning, web development, computer, Telkom University Purwokerto, modern design, clean portfolio",
+            "og_title": "Deden Hadiguna - Modern Portfolio",
+            "og_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch.",
+            "preloader_loading": "LOADING PORTFOLIO",
+            "preloader_status_label": "STATUS:",
+            "preloader_status_value": "ONLINE",
+            "system_status_ai": "AI Status",
+            "status_canvas_value": "OFFLINE",
+            "hero_title": "Deden Hadiguna",
+            "profile_subtitle": "Data Architect & AI Developer",
+            "profile_subtitle_highlight": "Data Architect & AI Developer",
+            "welcome_text": "Welcome to my personal portfolio",
+            "thank_you_text": "Hellooooo everyoneeee ☺️",
+            "voice_info_text": "Voice feature is available by clicking the headphone icon above, it will chime when active. Say \"Help me\" and it will speak and list what it can do.",
+            "view_projects": "VIEW PROJECTS",
+            "download_cv": "DOWNLOAD CV",
+            "about_me_title": "About Me",
+            "about_me_p1": "Hello! I'm Deden Hadiguna, a proactive Computer Science student at Telkom University Purwokerto. My interests lie in Artificial Intelligence, Machine Learning, and Deep Learning, where I strive to create innovative solutions that empower technology.",
+            "about_me_p2": "My experience, though not always formal, is enriched by independent projects and certifications from programs like Merdeka Academy. This journey has shaped me into a proactive, team-oriented individual, ready to face professional challenges.",
+            "terminal_name_label": "Name:",
+            "profile_name_terminal": "Deden Hadiguna",
+            "terminal_role_label": "Role:",
+            "profile_role_terminal": "AI Developer / Computer Science Student",
+            "terminal_location_label": "Location:",
+            "profile_location_terminal": "Purwokerto, Central Java, Indonesia",
+            "terminal_status_label": "Status:",
+            "profile_status_terminal": "Innovating Non-stop",
+            "terminal_command_label": "Command:",
+            "terminal_command_value": "who_am_i",
+            "profile_response_terminal": "A passionate Computer Science student dedicated to creating intelligent systems and impactful solutions.",
+            "skills_title": "Skills & Expertise",
+            "skill_machine_learning_title": "Machine Learning",
+            "skill_machine_learning_desc": "Experienced in developing and deploying ML models using modern frameworks.",
+            "skill_deep_learning_title": "Deep Learning",
+            "skill_deep_learning_desc": "Proficient in neural networks and deep learning architectures.",
+            "skill_programming_title": "Programming",
+            "skill_programming_desc": "Strong foundation in multiple programming languages.",
+            "skill_data_db_title": "Data & Databases",
+            "skill_data_db_desc": "Database design, query optimization, and data management.",
+            "skill_tools_platforms_title": "Tools & Platforms",
+            "skill_tools_platforms_desc": "Familiarity with deployment, version control, and cloud platforms.",
+            "skill_cert_concepts_title": "Concepts & Certifications",
+            "skill_cert_concepts_desc": "Formal training and practical application of advanced AI concepts.",
+            "skill_overlay_title": "CANVAS_INFO:",
+            "skill_overlay_desc_default": "Hover over skill modules for detailed analysis.",
+            "projects_title": "Projects",
+            "all_filter": "ALL",
+            "computer_vision_filter": "COMPUTER VISION",
+            "nlp_filter": "NLP",
+            "machine_learning_filter": "MACHINE LEARNING",
+            "web_dev_filter": "WEB DEVELOPMENT",
+            "project_plant_disease_title": "Plant Disease Predictor",
+            "project_plant_disease_type": "Computer Vision / Deep Learning",
+            "project_plant_disease_desc": "Developed a CNN model to identify plant leaf diseases from images for early detection.",
+            "project_movie_sentiment_title": "Movie Review Sentiment Analysis",
+            "project_movie_sentiment_type": "NLP",
+            "project_movie_sentiment_desc": "Built a sentiment analysis system to classify movie reviews (positive/negative/neutral) using NLP techniques.",
+            "project_music_recom_title": "Music Recommendation System",
+            "project_music_recom_type": "Machine Learning / Data Mining",
+            "project_music_recom_desc": "Developed a music recommendation system based on collaborative filtering and content-based approaches.",
+            "project_portfolio_title": "Interactive Portfolio Interface",
+            "project_portfolio_type": "Web Development / Frontend",
+            "project_portfolio_desc": "This portfolio interface itself, designed with HTML, CSS, and JavaScript for a unique experience.",
+            "repo_link": "REPO",
+            "demo_link_disabled": "DEMO",
+            "report_link_disabled": "REPORT",
+            "live_link": "LIVE",
+            "photos_title": "Personal Moments",
+            "photos_campus_life": "Campus Life",
+            "photos_learning_session": "Learning Session",
+            "photos_group_project": "Group Project",
+            "photos_tech_event": "Tech Event",
+            "certificates_title": "Certificates",
+            "cert_general": "General Certificate",
+            "cert_issuer_professional_development": "Professional Development",
+            "cert_azure_ai": "Azure AI Fundamentals",
+            "cert_issuer_microsoft": "Microsoft Certified",
+            "cert_webinar_rise": "Webinar Rise Intelligent Future",
+            "cert_issuer_google_developer_student_clubs": "Google Developer Student Clubs",
+            "cert_webinar_nevcrypt": "Webinar Nevcrypt #2",
+            "cert_issuer_nevcrypt_community": "Nevcrypt Community",
+            "cert_javascript": "JavaScript Programming",
+            "cert_issuer_dicoding_indonesia": "Dicoding Indonesia",
+            "cert_other": "Other Certificates",
+            "cert_issuer_various_platforms": "Various Platforms",
+            "education_title": "Education & Activities",
+            "edu_telkom_university_purwokerto_title": "Telkom University Purwokerto",
+            "edu_telkom_university_purwokerto_period": "2023 - Present",
+            "edu_telkom_university_purwokerto_role": "Computer Science Student",
+            "edu_telkom_university_purwokerto_desc": "Currently pursuing a Bachelor's degree with a focus on Data Structures, Algorithms, Databases, and specialized Artificial Intelligence courses. Actively involved in group projects and personal development.",
+            "edu_calculus_teaching_assistant_title": "Azure AI Fundamentals Training",
+            "edu_calculus_teaching_assistant_period": "May 2025 - June 2025",
+            "edu_calculus_teaching_assistant_role": "Preparation Course for Azure AI Fundamentals (AI-900)",
+            "edu_calculus_teaching_assistant_desc": "The Azure AI Fundamentals Training program is designed for anyone interested in learning about the types of solutions artificial intelligence (AI) enables, and the services on Microsoft Azure.",
+            "edu_bangkit_academy_title": "Bangkit Academy by Google, GoTo, Traveloka",
+            "edu_bangkit_academy_period": "February 2024 - April 2024",
+            "edu_bangkit_academy_role": "Machine Learning Engineer Cohort",
+            "edu_bangkit_academy_desc": "Intensive program covering Python for ML, Machine Learning Fundamentals, Deep Learning Architectures, and AI Model Deployment using Google Cloud Platform (GCP). Completed a team capstone project.",
+            "edu_high_school_graduate_title": "High School Graduate",
+            "edu_high_school_graduate_period": "2020 - 2023",
+            "edu_high_school_graduate_role": "SMA Negeri 1 CabangBungin",
+            "edu_high_school_graduate_desc": "Graduated from the Science program. Actively involved in Information and Communication Technology (ICT) activities.",
+            "contact_title": "Contact Me",
+            "contact_intro": "Tertarik untuk berkolaborasi dalam proyek AI, mendiskusikan inovasi teknologi, atau memiliki peluang untuk dibagikan? Jangan ragu untuk menghubungi saya! Saya selalu terbuka untuk koneksi baru.",
+            "contact_email_title": "Email",
+            "contact_linkedin_title": "LinkedIn",
+            "contact_github_title": "GitHub",
+            "contact_whatsapp_title": "WhatsApp",
+            "back_to_top_aria": "Kembali ke atas",
+            "footer_rights": "Semua hak dilindungi undang-undang.",
+            "home": "Home",
+            "about": "About",
+            "skills": "Skills",
+            "projects": "Projects",
+            "photos": "Photos",
+            "certificates": "Certificates",
+            "education": "Education",
+            "contact": "Contact",
+            "logo_text": "HDiignna DEV.",
+            "lang_id": "ID",
+            "lang_en": "EN",
+            "voice_assistant_active_title": "Voice Assistant: ACTIVE (Click to Stop)",
+            "voice_assistant_inactive_title": "Voice Assistant: INACTIVE (Click to Start)",
+            "voice_status_listening": "LISTENING...",
+            "voice_status_processing": "PROCESSING...",
+            "voice_status_speaking": "SPEAKING...",
+            "voice_status_inactive": "INACTIVE",
+            "voice_error_start_recognition": "Sorry, cannot start speech recognition. Make sure your microphone is working and allow access.",
+            "voice_error_general": "An error occurred with speech recognition.",
+            "voice_error_not_allowed": "Microphone access denied. Please allow microphone usage.",
+            "voice_error_no_speech": "No speech detected. Please try again.",
+            "voice_error_network": "No internet connection for speech recognition. Please check your connection.",
+            "loading_image": "LOADING IMAGE...",
+            "loading": "Loading",
+            "image_not_found_error": "ERROR: IMAGE NOT FOUND. Please check file path.",
+            "loading_error": "Error loading",
+            "check_file_path": "Check file path",
+            "konami_code_activated": "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.",
+            "link_opened_confirmation": (title) => `Okay, I will open Deden's ${title}.`,
+            "download_cv_confirmation": () => 'Okay, Deden Hadiguna\'s CV will be downloaded.',
+            "project": "project",
+            "certificate": "certificate",
+            "education_history": "education history",
+            "which_project": "which project",
+            "which_certificate": "which certificate",
+            "which_education_history": "which education history",
+            "skills_info": () => 'Certainly, these are Deden\'s skills. Is there any particular skill you\'d like to know more about?',
+            "projects_info": () => 'Here is a list of Deden\'s projects. Is there any specific project that catches your attention?',
+            "education_info": () => 'Here is Deden\'s education history. Any other questions?',
+            "contact_info": () => 'Certainly, here is Deden\'s contact information.',
+            "cv_link": "CV link",
+            "link": "link"
+        }
+    };
+
+    const responseVariations = {
+        id: {
+            greet: [
+                'Halo kembali. Ada yang bisa saya bantu?',
+                'Hai! Apa yang bisa saya lakukan untuk Anda?',
+                'Selamat datang kembali. Ada pertanyaan?',
+                'Senang bisa berbicara dengan Anda.'
+            ],
+            identity: [
+                'Saya adalah asisten AI di portofolio Deden Hadiguna. Saya di sini untuk membantu Anda menjelajahi informasi.',
+                'Saya adalah antarmuka AI Deden. Saya dapat membantu Anda menemukan apa yang Anda cari di situs ini.',
+                'Anda berbicara dengan asisten virtual Deden Hadiguna. Senang bertemu dengan Anda.'
+            ],
+            time: (timeString) => [
+                `Sekarang pukul ${timeString} Waktu Indonesia Barat.`,
+                `Waktu saat ini adalah ${timeString} WIB.`,
+                `Pukul ${timeString} WIB sekarang.`
+            ],
+            location: (loc) => [
+                `Deden Hadiguna berlokasi di ${loc}.`,
+                `Saat ini Deden ada di ${loc}.`,
+                `Lokasi Deden adalah ${loc}.`
+            ],
+            aboutDedenFull: () => {
+                const aboutTextElement1 = document.querySelector('[data-i18n="about_me_p1"]');
+                const aboutTextElement2 = document.querySelector('[data-i18n="about_me_p2"]');
+                let text = '';
+                if (aboutTextElement1) {
+                    text += (languageData['id']['about_me_p1'] || aboutTextElement1.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                }
+                if (aboutTextElement2) {
+                    if (text) text += ' ';
+                    text += (languageData['id']['about_me_p2'] || aboutTextElement2.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                }
+                return text || 'Maaf, saya tidak dapat menemukan informasi lengkap tentang Deden saat ini.';
+            },
+            dedenAge: (age) => {
+                const currentYear = new Date().getFullYear();
+                const userAge = parseInt(document.body.dataset.userAge) || 'unknown'; 
+                
+                if (userAge && !isNaN(userAge)) {
+                    return [
+                        `Deden Hadiguna saat ini berumur sekitar ${userAge} tahun.`,
+                        `Usia Deden adalah ${userAge} tahun.`,
+                        `Menurut catatan saya, Deden berusia ${userAge} tahun.`
+                    ];
+                } else {
+                    return [
+                        `Saya tidak memiliki informasi pasti mengenai umur Deden.`,
+                        `Maaf, saya tidak bisa memberikan informasi umur Deden saat ini.`,
+                        `Umur Deden tidak tercatat dalam sistem saya.`
+                    ];
+                }
+            },
+            dedenHobbies: (hobbies) => [
+                `Deden memiliki beberapa minat, antara lain ${hobbies}.`,
+                `Beberapa hobi dan kegemaran Deden adalah ${hobbies}.`,
+                `Dia suka melakukan ${hobbies}.`
+            ],
+            projectDetails: (title, type, tech) => [
+                `Proyek ${title} adalah proyek ${type}, menggunakan teknologi seperti ${tech}.`,
+                `${title} ini merupakan proyek ${type} yang dikembangkan dengan ${tech}.`
+            ],
+            certDetails: (title, issuer, date) => {
+                const dateText = date && date !== 'N/A' ? ` pada tahun ${date}` : '';
+                return [
+                    `Sertifikat ${title} diterbitkan oleh ${issuer}${dateText}.`,
+                    `Sertifikat ${title} ini berasal dari ${issuer}, yang diperoleh${dateText}.`
+                ];
+            },
+            eduDetails: (title, role, period, desc) => [
+                `Mengenai ${title}, Deden berperan sebagai ${role} pada periode ${period}. Deskripsinya adalah: ${desc}.`,
+                `Pendidikan atau aktivitas ${title} di mana Deden menjadi ${role} dari ${period}, dengan deskripsi: ${desc}.`
+            ],
+            thanks: [
+                'Sama-sama. Senang bisa membantu.',
+                'Dengan senang hati.',
+                'Tidak masalah.',
+                'Senang saya bisa membantu Anda.'
+            ],
+            unrecognized: [
+                'Maaf, saya tidak mengerti perintah itu. Bisakah Anda mengulanginya?',
+                'Saya kurang memahami. Bisakah Anda mencoba perintah lain?',
+                'Perintah tersebut tidak dikenali. Mohon berikan instruksi yang lebih jelas.',
+                'Saya tidak dapat memproses permintaan Anda. Perintah apa yang ingin Anda berikan?'
+            ],
+            confirmNavigation: (section) => [
+                `Baik, saya akan membawa Anda ke bagian ${section}.`,
+                `Mengganti tampilan ke ${section}.`,
+                `Menuju ke ${section}.`
+            ],
+            errorNotFound: (item) => [
+                `Maaf, saya tidak dapat menemukan ${item} yang Anda maksud.`,
+                `Tidak dapat menemukan ${item}. Mungkin ada kesalahan penulisan?`,
+                `Saya tidak bisa menemukan ${item}.`
+            ],
+            help: [
+                'Anda bisa meminta saya untuk "Tampilkan proyek", "Buka LinkedIn", "Ceritakan tentang Deden", atau bertanya "Jam berapa".',
+                'Saya dapat membantu Anda menavigasi situs ini. Coba katakan "Tampilkan keahlian" atau "Hubungi Deden".',
+                'Perintah yang saya pahami antara lain: navigasi halaman, buka tautan sosial, informasi tentang Deden, dan waktu saat ini.'
+            ],
+            fullHelp: () => {
+                const capabilities = [
+                    'Saya bisa menyapa Anda.',
+                    'Saya bisa memberi tahu siapa saya.',
+                    'Saya bisa memberi tahu waktu saat ini.',
+                    'Saya bisa memberi tahu lokasi Deden.',
+                    'Saya bisa menceritakan tentang Deden Hadiguna, termasuk keahlian, proyek, pendidikan, umur, dan hobinya.',
+                    'Saya bisa membantu Anda mengunduh CV Deden.',
+                    'Saya bisa membuka tautan sosial seperti LinkedIn, GitHub, email, atau WhatsApp Deden.',
+                    'Saya bisa menavigasi Anda ke berbagai bagian portofolio ini, seperti Home, About, Skills, Projects, Photos, Certificates, Education, dan Contact.',
+                    'Dan tentu saja, saya bisa memberikan bantuan seperti saat ini.'
+                ];
+                return 'Saya bisa melakukan beberapa hal. Contohnya, ' + capabilities.join(', ') + '. Apa yang ingin Anda lakukan?';
+            },
+            thinking: [
+                'Memproses...',
+                'Sebentar...',
+                'Menganalisis...'
+            ],
+            clarification: (question) => [
+                `Bisakah Anda lebih spesifik tentang ${question}?`,
+                `Anda ingin ${question} yang mana?`
+            ],
+            goodbye: [
+                'Baik, saya akan nonaktifkan. Sampai jumpa lagi!',
+                'Asisten dinonaktifkan. Silakan aktifkan kembali kapan saja Anda butuhkan.',
+                'Saya off. Hubungi saya jika Anda butuk bantuan.'
+            ],
+            proactiveHelp: [
+                "Apakah ada hal lain yang ingin Anda ketahui atau bagian yang ingin Anda kunjungi?",
+                "Ada lagi yang bisa saya bantu?",
+                "Jika Anda butuh bantuan, katakan 'bantu saya'."
+            ]
         },
         "en": {
             "page_title": "Deden Hadiguna - Modern Portfolio",
@@ -322,85 +617,8 @@
         }
     };
 
-    const debounce = (func, delay) => {
-        let timeout;
-        return function(...args) {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), delay);
-        };
-    };
-
-    const preloader = document.getElementById('preloader');
-    const preloaderStatus = document.getElementById('preloader-status');
-
-    function hidePreloader() {
-        if (preloader) {
-            preloader.classList.add('hidden');
-            preloader.addEventListener('transitionend', () => {
-                preloader.remove();
-                initCoreFeatures();
-            }, { once: true });
-        } else {
-            initCoreFeatures();
-        }
-    }
-
-    if (preloader && preloaderStatus) {
-        const preloaderBar = preloader.querySelector('.preloader-bar');
-        const preloaderTextSpans = preloader.querySelectorAll('.preloader-text span');
-        
-        preloaderStatus.textContent = 'MEMUAT...';
-
-        if (preloaderBar) {
-            preloaderBar.addEventListener('animationend', () => {
-                preloaderStatus.textContent = 'SIAP';
-                preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
-                setTimeout(hidePreloader, 300);
-            }, { once: true });
-
-            preloaderTextSpans.forEach((span, index) => {
-                let delay = 0;
-                if (index === 0) delay = 100;
-                if (index === 1) delay = 2000;
-                if (index === 2) delay = 2750;
-                
-                setTimeout(() => {
-                    span.classList.add('typed-done');
-                }, delay + 100);
-            });
-
-        } else {
-            preloaderStatus.textContent = 'SIAP';
-            preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
-            setTimeout(hidePreloader, 500);
-        }
-    } else {
-        initCoreFeatures();
-    }
-
-    function initCoreFeatures() {
-        initContentAnimations();
-        initQuantumCanvas();
-        initUptimeCounter();
-        initAIStatus();
-        initDecryptTextOnScroll();
-        initNavAndScrollHighlight();
-        initCtaButtons();
-        initMobileMenuToggle();
-        initProjectFiltering();
-        initSkillInfoOverlay();
-        initImageModal();
-        initCurrentYear();
-        initBackToTopButton();
-        initKonamiCode();
-        initAIVoiceToggle();
-        initTypedJS();
-        initLanguageToggle();
-        initDashboardToggle();
-        initDarkModeToggle();
-    }
-
+    // >>> START: Pastikan DEKLARASI FUNGSI applyLanguage di sini <<<
+    // Ini adalah fungsi applyLanguage original yang akan dideklarasikan di awal
     function applyLanguage(lang) {
         document.documentElement.lang = lang;
 
@@ -493,6 +711,88 @@
 
         localStorage.setItem('selectedLanguage', lang);
     }
+    // >>> END: DEKLARASI FUNGSI applyLanguage di sini <<<
+
+    const debounce = (func, delay) => {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
+
+    const preloader = document.getElementById('preloader');
+    const preloaderStatus = document.getElementById('preloader-status');
+
+    function hidePreloader() {
+        if (preloader) {
+            preloader.classList.add('hidden');
+            preloader.addEventListener('transitionend', () => {
+                preloader.remove();
+                initCoreFeatures();
+            }, { once: true });
+        } else {
+            initCoreFeatures();
+        }
+    }
+
+    if (preloader && preloaderStatus) {
+        const preloaderBar = preloader.querySelector('.preloader-bar');
+        const preloaderTextSpans = preloader.querySelectorAll('.preloader-text span');
+        
+        preloaderStatus.textContent = 'MEMUAT...';
+
+        if (preloaderBar) {
+            preloaderBar.addEventListener('animationend', () => {
+                preloaderStatus.textContent = 'SIAP';
+                preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
+                setTimeout(hidePreloader, 300);
+            }, { once: true });
+
+            preloaderTextSpans.forEach((span, index) => {
+                let delay = 0;
+                if (index === 0) delay = 100;
+                if (index === 1) delay = 2000;
+                if (index === 2) delay = 2750;
+                
+                setTimeout(() => {
+                    span.classList.add('typed-done');
+                }, delay + 100);
+            });
+
+        } else {
+            preloaderStatus.textContent = 'SIAP';
+            preloaderTextSpans.forEach(span => span.classList.add('typed-done'));
+            setTimeout(hidePreloader, 500);
+        }
+    } else {
+        initCoreFeatures();
+    }
+
+    function initCoreFeatures() {
+        initContentAnimations();
+        initQuantumCanvas();
+        initUptimeCounter();
+        initAIStatus();
+        initDecryptTextOnScroll();
+        initNavAndScrollHighlight();
+        initCtaButtons();
+        initMobileMenuToggle();
+        initProjectFiltering();
+        initSkillInfoOverlay();
+        initImageModal();
+        initCurrentYear();
+        initBackToTopButton();
+        initKonamiCode();
+        initAIVoiceToggle();
+        initTypedJS();
+        initLanguageToggle();
+        initDashboardToggle();
+        initDarkModeToggle();
+    }
+
+    let applyLanguageModified = false; // Flag to check if applyLanguage has been modified
 
     function initLanguageToggle() {
         const langButtons = document.querySelectorAll('.lang-btn');
@@ -508,6 +808,30 @@
 
         const savedLanguage = localStorage.getItem('selectedLanguage') || 'id';
         applyLanguage(savedLanguage);
+    }
+
+    // This section modifies the applyLanguage function
+    if (!applyLanguageModified) { // Ensure it's only modified once
+        let originalApplyLanguage = applyLanguage; // Capture the initial function reference
+        applyLanguage = (lang) => { // Reassign applyLanguage to the new function
+            originalApplyLanguage(lang); // Call the original function first
+            // Add additional logic that you want to run after the original applyLanguage
+            if (lang === 'en' || lang === 'id') { // Only run if language is English or Indonesian
+                initTypedJS(); // Re-initialize TypedJS for the hero title
+                findAndSetAIvoice(); // Re-select AI voice for the current language
+                const skillOverlayDesc = document.getElementById('skill-overlay-desc');
+                if (skillOverlayDesc) {
+                    skillOverlayDesc.textContent = languageData[lang]["skill_overlay_desc_default"] || 'Arahkan kursor ke modul skill untuk analisis detail.';
+                }
+                const aiVoiceToggle = document.querySelector('.ai-voice-toggle');
+                if (aiVoiceToggle) {
+                    const isActive = aiVoiceToggle.dataset.active === 'true';
+                    aiVoiceToggle.setAttribute('title', isActive ? languageData[lang]["voice_assistant_active_title"] : languageData[lang]["voice_assistant_inactive_title"]);
+                }
+                initAIStatus(aiStatusElement.textContent, aiStatusElement.style.color);
+            }
+        };
+        applyLanguageModified = true; // Set flag to true
     }
 
     let uptimeSeconds = 0;
@@ -980,420 +1304,6 @@
             queryEdu: ['tell me about education', 'explain education', 'education details', 'education information', 'education history', 'education']
         }
     };
-
-    const responseVariations = {
-        id: {
-            greet: [
-                'Halo kembali. Ada yang bisa saya bantu?',
-                'Hai! Apa yang bisa saya lakukan untuk Anda?',
-                'Selamat datang kembali. Ada pertanyaan?',
-                'Senang bisa berbicara dengan Anda.'
-            ],
-            identity: [
-                'Saya adalah asisten AI di portofolio Deden Hadiguna. Saya di sini untuk membantu Anda menjelajahi informasi.',
-                'Saya adalah antarmuka AI Deden. Saya dapat membantu Anda menemukan apa yang Anda cari di situs ini.',
-                'Anda berbicara dengan asisten virtual Deden Hadiguna. Senang bertemu dengan Anda.'
-            ],
-            time: (timeString) => [
-                `Sekarang pukul ${timeString} Waktu Indonesia Barat.`,
-                `Waktu saat ini adalah ${timeString} WIB.`,
-                `Pukul ${timeString} WIB sekarang.`
-            ],
-            location: (loc) => [
-                `Deden Hadiguna berlokasi di ${loc}.`,
-                `Saat ini Deden ada di ${loc}.`,
-                `Lokasi Deden adalah ${loc}.`
-            ],
-            aboutDedenFull: () => {
-                const aboutTextElement1 = document.querySelector('[data-i18n="about_me_p1"]');
-                const aboutTextElement2 = document.querySelector('[data-i18n="about_me_p2"]');
-                let text = '';
-                if (aboutTextElement1) {
-                    text += (languageData['id']['about_me_p1'] || aboutTextElement1.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
-                }
-                if (aboutTextElement2) {
-                    if (text) text += ' ';
-                    text += (languageData['id']['about_me_p2'] || aboutTextElement2.textContent).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
-                }
-                return text || 'Maaf, saya tidak dapat menemukan informasi lengkap tentang Deden saat ini.';
-            },
-            dedenAge: (age) => [
-                `Deden Hadiguna saat ini berumur sekitar ${age} tahun.`,
-                `Usia Deden adalah ${age} tahun.`,
-                `Menurut catatan saya, Deden berusia ${age} tahun.`
-            ],
-            dedenHobbies: (hobbies) => [
-                `Deden memiliki beberapa minat, antara lain ${hobbies}.`,
-                `Beberapa hobi dan kegemaran Deden adalah ${hobbies}.`,
-                `Dia suka melakukan ${hobbies}.`
-            ],
-            projectDetails: (title, type, tech) => [
-                `Proyek ${title} adalah proyek ${type}, menggunakan teknologi seperti ${tech}.`,
-                `${title} ini merupakan proyek ${type} yang dikembangkan dengan ${tech}.`
-            ],
-            certDetails: (title, issuer, date) => {
-                const dateText = date && date !== 'N/A' ? ` pada tahun ${date}` : '';
-                return [
-                    `Sertifikat ${title} diterbitkan oleh ${issuer}${dateText}.`,
-                    `Sertifikat ${title} ini berasal dari ${issuer}, yang diperoleh${dateText}.`
-                ];
-            },
-            eduDetails: (title, role, period, desc) => [
-                `Mengenai ${title}, Deden berperan sebagai ${role} pada periode ${period}. Deskripsinya adalah: ${desc}.`,
-                `Pendidikan atau aktivitas ${title} di mana Deden menjadi ${role} dari ${period}, dengan deskripsi: ${desc}.`
-            ],
-            thanks: [
-                'Sama-sama. Senang bisa membantu.',
-                'Dengan senang hati.',
-                'Tidak masalah.',
-                'Senang saya bisa membantu Anda.'
-            ],
-            unrecognized: [
-                'Maaf, saya tidak mengerti perintah itu. Bisakah Anda mengulanginya?',
-                'Saya kurang memahami. Bisakah Anda mencoba perintah lain?',
-                'Perintah tersebut tidak dikenali. Mohon berikan instruksi yang lebih jelas.',
-                'Saya tidak dapat memproses permintaan Anda. Perintah apa yang ingin Anda berikan?'
-            ],
-            confirmNavigation: (section) => [
-                `Baik, saya akan membawa Anda ke bagian ${section}.`,
-                `Mengganti tampilan ke ${section}.`,
-                `Menuju ke ${section}.`
-            ],
-            errorNotFound: (item) => [
-                `Maaf, saya tidak dapat menemukan ${item} yang Anda maksud.`,
-                `Tidak dapat menemukan ${item}. Mungkin ada kesalahan penulisan?`,
-                `Saya tidak bisa menemukan ${item}.`
-            ],
-            help: [
-                'Anda bisa meminta saya untuk "Tampilkan proyek", "Buka LinkedIn", "Ceritakan tentang Deden", atau bertanya "Jam berapa".',
-                'Saya dapat membantu Anda menavigasi situs ini. Coba katakan "Tampilkan keahlian" atau "Hubungi Deden".',
-                'Perintah yang saya pahami antara lain: navigasi halaman, buka tautan sosial, informasi tentang Deden, dan waktu saat ini.'
-            ],
-            fullHelp: () => {
-                const capabilities = [
-                    'Saya bisa menyapa Anda.',
-                    'Saya bisa memberi tahu siapa saya.',
-                    'Saya bisa memberi tahu waktu saat ini.',
-                    'Saya bisa memberi tahu lokasi Deden.',
-                    'Saya bisa menceritakan tentang Deden Hadiguna, termasuk keahlian, proyek, pendidikan, umur, dan hobinya.',
-                    'Saya bisa membantu Anda mengunduh CV Deden.',
-                    'Saya bisa membuka tautan sosial seperti LinkedIn, GitHub, email, atau WhatsApp Deden.',
-                    'Saya bisa menavigasi Anda ke berbagai bagian portofolio ini, seperti Home, About, Skills, Projects, Photos, Certificates, Education, dan Contact.',
-                    'Dan tentu saja, saya bisa memberikan bantuan seperti saat ini.'
-                ];
-                return 'Saya bisa melakukan beberapa hal. Contohnya, ' + capabilities.join(', ') + '. Apa yang ingin Anda lakukan?';
-            },
-            thinking: [
-                'Memproses...',
-                'Sebentar...',
-                'Menganalisis...'
-            ],
-            clarification: (question) => [
-                `Bisakah Anda lebih spesifik tentang ${question}?`,
-                `Anda ingin ${question} yang mana?`
-            ],
-            goodbye: [
-                'Baik, saya akan nonaktifkan. Sampai jumpa lagi!',
-                'Asisten dinonaktifkan. Silakan aktifkan kembali kapan saja Anda butuhkan.',
-                'Saya off. Hubungi saya jika Anda butuh bantuan.'
-            ],
-            proactiveHelp: [
-                "Apakah ada hal lain yang ingin Anda ketahui atau bagian yang ingin Anda kunjungi?",
-                "Ada lagi yang bisa saya bantu?",
-                "Jika Anda butuh bantuan, katakan 'bantu saya'."
-            ]
-        },
-        "en": {
-            "page_title": "Deden Hadiguna - Modern Portfolio",
-            "meta_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch. Explore a flowing personal data canvas.",
-            "meta_keywords": "Deden Hadiguna, AI developer, portfolio, machine learning, deep learning, web development, computer, Telkom University Purwokerto, modern design, clean portfolio",
-            "og_title": "Deden Hadiguna - Modern Portfolio",
-            "og_description": "Deden Hadiguna's interactive portfolio, an AI developer, with a modern design and professional touch.",
-            "preloader_loading": "LOADING PORTFOLIO",
-            "preloader_status_label": "STATUS:",
-            "preloader_status_value": "ONLINE",
-            "system_status_ai": "AI Status",
-            "status_canvas_value": "OFFLINE",
-            "hero_title": "Deden Hadiguna",
-            "profile_subtitle": "Data Architect & AI Developer",
-            "profile_subtitle_highlight": "Data Architect & AI Developer",
-            "welcome_text": "Welcome to my personal portfolio",
-            "view_projects": "VIEW PROJECTS",
-            "download_cv": "DOWNLOAD CV",
-            "about_me_title": "About Me",
-            "about_me_p1": "Hello! I'm Deden Hadiguna, a proactive Computer Science student at Telkom University Purwokerto. My interests lie in Artificial Intelligence, Machine Learning, and Deep Learning, where I strive to create innovative solutions that empower technology.",
-            "about_me_p2": "My experience, though not always formal, is enriched by independent projects and certifications from programs like Merdeka Academy. This journey has shaped me into a proactive, team-oriented individual, ready to face professional challenges.",
-            "terminal_name_label": "Name:",
-            "profile_name_terminal": "Deden Hadiguna",
-            "terminal_role_label": "Role:",
-            "profile_role_terminal": "AI Developer / Computer Science Student",
-            "terminal_location_label": "Location:",
-            "profile_location_terminal": "Purwokerto, Central Java, Indonesia",
-            "terminal_status_label": "Status:",
-            "profile_status_terminal": "Innovating Non-stop",
-            "terminal_command_label": "Command:",
-            "terminal_command_value": "who_am_i",
-            "profile_response_terminal": "A passionate Computer Science student dedicated to creating intelligent systems and impactful solutions.",
-            "skills_title": "Skills & Expertise",
-            "skill_machine_learning_title": "Machine Learning",
-            "skill_machine_learning_desc": "Experienced in developing and deploying ML models using modern frameworks.",
-            "skill_deep_learning_title": "Deep Learning",
-            "skill_deep_learning_desc": "Proficient in neural networks and deep learning architectures.",
-            "skill_programming_title": "Programming",
-            "skill_programming_desc": "Strong foundation in multiple programming languages.",
-            "skill_data_db_title": "Data & Databases",
-            "skill_data_db_desc": "Database design, query optimization, and data management.",
-            "skill_tools_platforms_title": "Tools & Platforms",
-            "skill_tools_platforms_desc": "Familiarity with deployment, version control, and cloud platforms.",
-            "skill_cert_concepts_title": "Concepts & Certifications",
-            "skill_cert_concepts_desc": "Formal training and practical application of advanced AI concepts.",
-            "skill_overlay_title": "CANVAS_INFO:",
-            "skill_overlay_desc_default": "Hover over skill modules for detailed analysis.",
-            "projects_title": "Projects",
-            "all_filter": "ALL",
-            "computer_vision_filter": "COMPUTER VISION",
-            "nlp_filter": "NLP",
-            "machine_learning_filter": "MACHINE LEARNING",
-            "web_dev_filter": "WEB DEVELOPMENT",
-            "project_plant_disease_title": "Plant Disease Predictor",
-            "project_plant_disease_type": "Computer Vision / Deep Learning",
-            "project_plant_disease_desc": "Developed a CNN model to identify plant leaf diseases from images for early detection.",
-            "project_movie_sentiment_title": "Movie Review Sentiment Analysis",
-            "project_movie_sentiment_type": "NLP",
-            "project_movie_sentiment_desc": "Built a sentiment analysis system to classify movie reviews (positive/negative/neutral) using NLP techniques.",
-            "project_music_recom_title": "Music Recommendation System",
-            "project_music_recom_type": "Machine Learning / Data Mining",
-            "project_music_recom_desc": "Developed a music recommendation system based on collaborative filtering and content-based approaches.",
-            "project_portfolio_title": "Interactive Portfolio Interface",
-            "project_portfolio_type": "Web Development / Frontend",
-            "project_portfolio_desc": "This portfolio interface itself, designed with HTML, CSS, and JavaScript for a unique experience.",
-            "repo_link": "REPO",
-            "demo_link_disabled": "DEMO",
-            "report_link_disabled": "REPORT",
-            "live_link": "LIVE",
-            "photos_title": "Personal Moments",
-            "photos_campus_life": "Campus Life",
-            "photos_learning_session": "Learning Session",
-            "photos_group_project": "Group Project",
-            "photos_tech_event": "Tech Event",
-            "certificates_title": "Certificates",
-            "cert_general": "General Certificate",
-            "cert_issuer_professional_development": "Professional Development",
-            "cert_azure_ai": "Azure AI Fundamentals",
-            "cert_issuer_microsoft": "Microsoft Certified",
-            "cert_webinar_rise": "Webinar Rise Intelligent Future",
-            "cert_issuer_google_developer_student_clubs": "Google Developer Student Clubs",
-            "cert_webinar_nevcrypt": "Webinar Nevcrypt #2",
-            "cert_issuer_nevcrypt_community": "Nevcrypt Community",
-            "cert_javascript": "JavaScript Programming",
-            "cert_issuer_dicoding_indonesia": "Dicoding Indonesia",
-            "cert_other": "Other Certificates",
-            "cert_issuer_various_platforms": "Various Platforms",
-            "education_title": "Education & Activities",
-            "edu_telkom_university_purwokerto_title": "Telkom University Purwokerto",
-            "edu_telkom_university_purwokerto_period": "2023 - Present",
-            "edu_telkom_university_purwokerto_role": "Computer Science Student",
-            "edu_telkom_university_purwokerto_desc": "Currently pursuing a Bachelor's degree with a focus on Data Structures, Algorithms, Databases, and specialized Artificial Intelligence courses. Actively involved in group projects and personal development.",
-            "edu_calculus_teaching_assistant_title": "Azure AI Fundamentals Training",
-            "edu_calculus_teaching_assistant_period": "May 2025 - June 2025",
-            "edu_calculus_teaching_assistant_role": "Preparation Course for Azure AI Fundamentals (AI-900)",
-            "edu_calculus_teaching_assistant_desc": "The Azure AI Fundamentals Training program is designed for anyone interested in learning about the types of solutions artificial intelligence (AI) enables, and the services on Microsoft Azure.",
-            "edu_bangkit_academy_title": "Bangkit Academy by Google, GoTo, Traveloka",
-            "edu_bangkit_academy_period": "February 2024 - April 2024",
-            "edu_bangkit_academy_role": "Machine Learning Engineer Cohort",
-            "edu_bangkit_academy_desc": "Intensive program covering Python for ML, Machine Learning Fundamentals, Deep Learning Architectures, and AI Model Deployment using Google Cloud Platform (GCP). Completed a team capstone project.",
-            "edu_high_school_graduate_title": "High School Graduate",
-            "edu_high_school_graduate_period": "2020 - 2023",
-            "edu_high_school_graduate_role": "SMA Negeri 1 CabangBungin",
-            "edu_high_school_graduate_desc": "Graduated from the Science program. Actively involved in Information and Communication Technology (ICT) activities.",
-            "contact_title": "Contact Me",
-            "contact_intro": "Interested in collaborating on AI projects, discussing tech innovations, or have an opportunity to share? Feel free to reach out! I'm always open to new connections.",
-            "contact_email_title": "Email",
-            "contact_linkedin_title": "LinkedIn",
-            "contact_github_title": "GitHub",
-            "contact_whatsapp_title": "WhatsApp",
-            "back_to_top_aria": "Back to top",
-            "footer_rights": "All rights reserved.",
-            "home": "Home",
-            "about": "About",
-            "skills": "Skills",
-            "projects": "Projects",
-            "photos": "Photos",
-            "certificates": "Certificates",
-            "education": "Education",
-            "contact": "Contact",
-            "logo_text": "HDiignna DEV.",
-            "lang_id": "ID",
-            "lang_en": "EN",
-            "voice_assistant_active_title": "Voice Assistant: ACTIVE (Click to Stop)",
-            "voice_assistant_inactive_title": "Voice Assistant: INACTIVE (Click to Start)",
-            "voice_status_listening": "LISTENING...",
-            "voice_status_processing": "PROCESSING...",
-            "voice_status_speaking": "SPEAKING...",
-            "voice_status_inactive": "INACTIVE",
-            "voice_error_start_recognition": "Sorry, cannot start speech recognition. Make sure your microphone is working and allow access.",
-            "voice_error_general": "An error occurred with speech recognition.",
-            "voice_error_not_allowed": "Microphone access denied. Please allow microphone usage.",
-            "voice_error_no_speech": "No speech detected. Please try again.",
-            "voice_error_network": "No internet connection for speech recognition. Please check your connection.",
-            "loading_image": "LOADING IMAGE...",
-            "loading": "Loading",
-            "image_not_found_error": "ERROR: IMAGE NOT FOUND. Please check file path.",
-            "loading_error": "Error loading",
-            "check_file_path": "Check file path",
-            "konami_code_activated": "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.",
-            "link_opened_confirmation": (title) => `Okay, I will open Deden's ${title}.`,
-            "download_cv_confirmation": () => 'Okay, Deden Hadiguna\'s CV will be downloaded.',
-            "project": "project",
-            "certificate": "certificate",
-            "education_history": "education history",
-            "which_project": "which project",
-            "which_certificate": "which certificate",
-            "which_education_history": "which education history",
-            "skills_info": () => 'Certainly, these are Deden\'s skills. Is there any particular skill you\'d like to know more about?',
-            "projects_info": () => 'Here is a list of Deden\'s projects. Is there any specific project that catches your attention?',
-            "education_info": () => 'Here is Deden\'s education history. Any other questions?',
-            "contact_info": () => 'Certainly, here is Deden\'s contact information.',
-            "cv_link": "CV link",
-            "link": "link"
-        }
-    };
-
-    const darkModeToggle = document.getElementById('darkModeToggle');
-
-    function initDarkModeToggle() {
-        if (!darkModeToggle) {
-            return;
-        }
-
-        const savedMode = localStorage.getItem('darkMode');
-        if (savedMode === 'enabled') {
-            document.body.classList.add('dark-mode');
-        }
-
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-    }
-
-    const originalApplyLanguage = applyLanguage;
-    applyLanguage = (lang) => {
-        originalApplyLanguage(lang);
-        if (lang === 'en' || lang === 'id') {
-            initTypedJS();
-            findAndSetAIvoice();
-            const skillOverlayDesc = document.getElementById('skill-overlay-desc');
-            if (skillOverlayDesc) {
-                skillOverlayDesc.textContent = languageData[lang]["skill_overlay_desc_default"] || 'Arahkan kursor ke modul skill untuk analisis detail.';
-            }
-            const aiVoiceToggle = document.querySelector('.ai-voice-toggle');
-            if (aiVoiceToggle) {
-                const isActive = aiVoiceToggle.dataset.active === 'true';
-                aiVoiceToggle.setAttribute('title', isActive ? languageData[lang]["voice_assistant_active_title"] : languageData[lang]["voice_assistant_inactive_title"]);
-            }
-            initAIStatus(aiStatusElement.textContent, aiStatusElement.style.color);
-        }
-    };
-
-    function navigateToSection(sectionId) {
-        const link = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-        if (link) {
-            link.click();
-            playSound('success');
-            return true;
-        }
-        return false;
-    }
-
-    function getProjectData(query) {
-        const projects = document.querySelectorAll('.project-card');
-        const currentLang = document.documentElement.lang;
-        const projectTranslations = {
-            "Plant Disease Predictor": { id: "Plant Disease Predictor", en: "Plant Disease Predictor" },
-            "Movie Review Sentiment Analysis": { id: "Movie Review Sentiment Analysis", en: "Movie Review Sentiment Analysis" },
-            "Music Recommendation System": { id: "Music Recommendation System", en: "Music Recommendation System" },
-            "Interactive Portfolio Interface": { id: "Interactive Portfolio Interface", en: "Interactive Portfolio Interface" }
-        };
-
-        for (const project of projects) {
-            const titleId = project.querySelector('.project-title')?.getAttribute('data-i18n');
-            const typeId = project.querySelector('.project-type')?.getAttribute('data-i18n');
-            const descId = project.querySelector('.project-desc')?.getAttribute('data-i18n');
-            
-            const title = languageData[currentLang][titleId] || project.dataset.projectTitle || '';
-            const type = languageData[currentLang][typeId] || project.dataset.projectType || '';
-            const desc = languageData[currentLang][descId] || project.dataset.projectDesc || '';
-            const tech = project.dataset.projectTech || '';
-
-            if (title.toLowerCase().includes(query) || type.toLowerCase().includes(query) || tech.toLowerCase().includes(query) || 
-                matchCommand(query, title.toLowerCase().split(' ')) || matchCommand(query, type.toLowerCase().split(' ')) || matchCommand(query, tech.toLowerCase().split(' '))) {
-                return {
-                    title: title,
-                    type: type,
-                    tech: tech
-                };
-            }
-        }
-        return null;
-    }
-
-    function getCertData(query) {
-        const certs = document.querySelectorAll('.certificate-item');
-        const currentLang = document.documentElement.lang;
-
-        for (const cert of certs) {
-            const titleId = cert.querySelector('.cert-title')?.getAttribute('data-i18n');
-            const issuerId = cert.querySelector('.cert-issuer')?.getAttribute('data-i18n');
-
-            const title = languageData[currentLang][titleId] || cert.dataset.certTitle || '';
-            const issuer = languageData[currentLang][issuerId] || cert.dataset.certIssuer || '';
-            const date = cert.dataset.certDate || '';
-
-            if (title.toLowerCase().includes(query) || issuer.toLowerCase().includes(query) || date.toLowerCase().includes(query) ||
-                matchCommand(query, title.toLowerCase().split(' ')) || matchCommand(query, issuer.toLowerCase().split(' '))) {
-                return {
-                    title: title,
-                    issuer: issuer,
-                    date: date
-                };
-            }
-        }
-        return null;
-    }
-
-    function getEducationData(query) {
-        const educationItems = document.querySelectorAll('.timeline-item');
-        const currentLang = document.documentElement.lang;
-
-        for (const item of educationItems) {
-            const titleId = item.querySelector('.timeline-title')?.getAttribute('data-i18n');
-            const roleId = item.querySelector('.timeline-role')?.getAttribute('data-i18n');
-            const periodId = item.querySelector('.timeline-period')?.getAttribute('data-i18n');
-            const descId = item.querySelector('.timeline-desc')?.getAttribute('data-i18n');
-
-            const title = languageData[currentLang][titleId] || item.dataset.eduTitle || '';
-            const role = languageData[currentLang][roleId] || item.dataset.eduRole || '';
-            const period = languageData[currentLang][periodId] || item.dataset.eduPeriod || '';
-            const desc = languageData[currentLang][descId] || item.dataset.eduDesc || '';
-
-            if (title.toLowerCase().includes(query) || role.toLowerCase().includes(query) || period.toLowerCase().includes(query) || desc.toLowerCase().includes(query) ||
-                matchCommand(query, title.toLowerCase().split(' ')) || matchCommand(query, role.toLowerCase().split(' '))) {
-                return {
-                    title: title,
-                    role: role,
-                    period: period,
-                    desc: desc
-                };
-            }
-        }
-        return null;
-    }
-
 
     const PROACTIVE_HELP_DELAY = 20000;
     const startProactiveHelpTimer = () => {
@@ -1910,7 +1820,8 @@
     let mouse = { x: null, y: null, radius: 200 };
     let particlesAnimationFrameId;
 
-    const PARTICLE_COUNT = 200;
+    const PARTICLE_COUNT_DESKTOP = 200; 
+    const PARTICLE_COUNT_MOBILE = 100; // Reduced for performance on mobile
     const PARTICLE_SIZE = 1.5;
     const PARTICLE_SPEED_MULTIPLIER = 0.05;
 
@@ -1947,7 +1858,9 @@
             quantumCanvas.height = quantumCanvas.offsetHeight;
 
             particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
+            // Dynamically adjust particle count based on screen width
+            const currentParticleCount = window.innerWidth <= 768 ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP; 
+            for (let i = 0; i < currentParticleCount; i++) {
                 particles.push(new Particle(
                     Math.random() * quantumCanvas.width,
                     Math.random() * quantumCanvas.height,
@@ -1970,8 +1883,9 @@
 
         draw() {
             if (!quantumCtx) return;
-            const hue = Math.random() * 60 + 180;
-            quantumCtx.fillStyle = `hsla(${hue}, 80%, 70%, ${this.opacity})`;
+            // Use the primary accent color for particles
+            const color = HIGHLIGHT_COLORS.secondary; 
+            quantumCtx.fillStyle = `rgba(${parseInt(color.slice(1, 3), 16)}, ${parseInt(color.slice(3, 5), 16)}, ${parseInt(color.slice(5, 7), 16)}, ${this.opacity})`;
             quantumCtx.beginPath();
             quantumCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             quantumCtx.closePath();
@@ -2017,7 +1931,9 @@
 
                     if (distance < 150) {
                         if (!quantumCtx) return;
-                        quantumCtx.strokeStyle = `rgba(0, 191, 255, ${0.4 - (distance / 150) * 0.4})`;
+                        // Use secondary accent color for lines
+                        const lineColor = HIGHLIGHT_COLORS.primary; 
+                        quantumCtx.strokeStyle = `rgba(${parseInt(lineColor.slice(1, 3), 16)}, ${parseInt(lineColor.slice(3, 5), 16)}, ${parseInt(lineColor.slice(5, 7), 16)}, ${0.4 - (distance / 150) * 0.4})`;
                         quantumCtx.lineWidth = 0.8;
                         quantumCtx.beginPath();
                         quantumCtx.moveTo(this.x, this.y);
@@ -2094,8 +2010,8 @@
         const resetSkillOverlay = () => {
             skillOverlayValue.textContent = defaultOverlayValue;
             skillOverlayDesc.textContent = defaultOverlayDesc;
-            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary;
-            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary;
+            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary; // Default color for value
+            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary; // Default color for description
         };
 
         skillCards.forEach(card => {
@@ -2106,8 +2022,8 @@
                 
                 skillOverlayValue.textContent = value;
                 skillOverlayDesc.textContent = desc;
-                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary;
-                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText;
+                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary; // Accent color when active
+                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText; // Dark text when active
             };
 
             card.addEventListener('mouseenter', updateOverlay);
@@ -2131,7 +2047,9 @@
         const modalImg = modal ? document.getElementById("modal-image-display") : null;
         const captionText = modal ? document.getElementById("modal-caption") : null;
         const closeBtn = modal ? modal.querySelector(".close-button") : null;
-        const profileAvatarImg = document.querySelector('.profile-avatar');
+        
+        // Exclude the new hero figure from triggering the modal
+        const heroMainFigure = document.querySelector('.hero-main-figure'); 
 
         if (!modal || !modalContent || !modalImg || !captionText || !closeBtn) {
             return;
@@ -2140,13 +2058,14 @@
         document.body.addEventListener('click', function(event) {
             const trigger = event.target.closest('.modal-trigger');
             
-            if (trigger === profileAvatarImg) {
+            // Prevent heroMainFigure from triggering modal
+            if (trigger === heroMainFigure) {
                 return; 
             }
 
             if (!trigger) return;
 
-            const parentCard = trigger.closest('.project-card, .photo-item, .certificate-item');
+            const parentCard = trigger.closest('.project-card, .photo-item, .certificate-item, .about-image'); // Include about-image
             if (!parentCard) {
                 return;
             }
@@ -2154,6 +2073,7 @@
             const imgSrc = parentCard.dataset.modalImage || trigger.src;
             let title = '';
 
+            // Determine caption based on parent type
             if (parentCard.classList.contains('project-card')) {
                 const titleKey = parentCard.querySelector('.project-title')?.getAttribute('data-i18n');
                 title = languageData[document.documentElement.lang][titleKey] || parentCard.dataset.projectTitle || parentCard.querySelector('.project-title')?.textContent || 'Project Image';
@@ -2163,6 +2083,8 @@
             } else if (parentCard.classList.contains('certificate-item')) {
                 const titleKey = parentCard.querySelector('.cert-title')?.getAttribute('data-i18n');
                 title = languageData[document.documentElement.lang][titleKey] || parentCard.dataset.certTitle || parentCard.querySelector('.cert-title')?.textContent || 'Certificate';
+            } else if (parentCard.classList.contains('about-image')) { // Handle about-image specifically
+                title = trigger.alt || 'Personal Moment'; 
             }
 
             if (!imgSrc) {
@@ -2180,11 +2102,11 @@
 
             const loadingTextDiv = document.createElement('div');
             loadingTextDiv.classList.add('modal-loading-text');
-            loadingTextDiv.textContent = languageData[document.documentElement.lang]["loading_image"] || 'LOADING IMAGE...';
+            loadingTextDiv.textContent = languageData[document.documentElement.lang]["loading_image"] || 'MEMUAT GAMBAR...';
             modalContent.appendChild(loadingTextDiv);
 
             modalContent.style.backgroundColor = HIGHLIGHT_COLORS.lightBg;
-            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Loading'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`;
+            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Memuat'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`;
             modal.style.display = "flex";
             modal.focus();
 
@@ -2196,7 +2118,7 @@
                     currentLoadingText.remove();
                 }
                 modalImg.style.display = 'block';
-                modalContent.style.backgroundColor = '';
+                modalContent.style.backgroundColor = ''; // Reset background to allow CSS to take over
                 captionText.innerHTML = title;
             };
 
@@ -2208,11 +2130,11 @@
                 const errorTextDiv = document.createElement('div');
                 errorTextDiv.classList.add('modal-loading-text');
                 errorTextDiv.style.color = GLITCH_COLOR;
-                errorTextDiv.textContent = languageData[document.documentElement.lang]["image_not_found_error"] || 'ERROR: IMAGE NOT FOUND. Please check file path.';
+                errorTextDiv.textContent = languageData[document.documentElement.lang]["image_not_found_error"] || 'GALAT: GAMBAR TIDAK DITEMUKAN. Silakan periksa jalur file.';
                 modalContent.appendChild(errorTextDiv);
                 modalContent.style.backgroundColor = 'rgba(100, 0, 0, 0.8)';
                 modalImg.style.display = 'none';
-                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Error loading'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Check file path'})</span>`;
+                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Galat memuat'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Periksa jalur file'})</span>`;
             };
         });
 
@@ -2222,6 +2144,9 @@
             modalImg.alt = '';
             const currentLoadingText = modalContent.querySelector('.modal-loading-text');
             if (currentLoadingText) currentLoadingText.remove();
+            // Reset background and caption styling on close
+            modalContent.style.backgroundColor = '';
+            captionText.style.color = ''; 
         };
 
         closeBtn.addEventListener('click', closeModal);
