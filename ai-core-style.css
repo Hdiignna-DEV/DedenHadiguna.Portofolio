@@ -1,15 +1,15 @@
 :root {
-    --color-bg-primary: #F8F8F8;
-    --color-bg-secondary: #F0F0F0;
+    --color-bg-primary: #EAECC6; /* Bora */
+    --color-bg-secondary: #F8F9EB; /* Sedikit lebih gelap dari Bora untuk variasi */
     --color-text-dark: #212121;
     --color-text-muted: #616161;
-    --color-accent-primary: #3F51B5;
-    --color-accent-secondary: #9C27B0;
-    --color-accent-tertiary: #00BCD4;
+    --color-accent-primary: #2BC0E4; /* Skyline */
+    --color-accent-secondary: #FF6B6B; /* Aksen sekunder baru */
+    --color-accent-tertiary: #5E6D7E; /* Aksen tersier baru */
     --color-shadow-light: rgba(0, 0, 0, 0.05);
     --color-shadow-medium: rgba(0, 0, 0, 0.1);
-    --border-light: #E0E0E0;
-    --card-bg-light: #FFFFFF;
+    --border-light: #D1D8BE; /* Border yang cocok dengan Bora */
+    --card-bg-light: #FFFFFF; /* Bisa tetap putih atau disesuaikan ke Bora */
     --glass-blur-amount: 15px;
     --glass-bg-opacity: 0.9;
     --border-radius-card: 8px;
@@ -17,12 +17,13 @@
     --transition-speed: 0.3s;
     --header-height-desktop: 80px;
     --header-height-mobile: 60px;
-    --color-glitch-effect: #E74C3C;
+    --color-glitch-effect: #FF4F4F; /* Glitch color yang diperbarui */
 
+    /* Dark Mode Colors */
     --dark-mode-bg-primary: #1A202C;
     --dark-mode-bg-secondary: #2D3748;
-    --dark-mode-text-light: #E2E8F0;
-    --dark-mode-text-muted: #A0AEC0;
+    --dark-mode-text-light: #F2F4F7;
+    --dark-mode-text-muted: #BCCCDC;
     --dark-mode-border: #4A5568;
     --dark-mode-card-bg: #2D3748;
     --dark-mode-shadow-light: rgba(0, 0, 0, 0.2);
@@ -2326,4 +2327,3 @@ body.overclock-mode .quantum-canvas-bg {
         bottom: 70px;
         right: 10px;
     }
-}
