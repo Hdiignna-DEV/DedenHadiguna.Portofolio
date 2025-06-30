@@ -2,12 +2,12 @@
     "use strict";
 
     const HIGHLIGHT_COLORS = {
-        primary: '#2BC0E4',
-        secondary: '#FF6B6B',
-        tertiary: '#5E6D7E',
+        primary: '#00BFFF',
+        secondary: '#FF00FF',
+        tertiary: '#39FF14',
         darkText: '#E2E8F0',
         lightBg: '#1A202C',
-        glitch: '#FF4F4F'
+        glitch: '#E74C3C'
     };
     const GLITCH_COLOR = HIGHLIGHT_COLORS.glitch;
 
@@ -291,34 +291,34 @@
             "voice_assistant_active_title": "Voice Assistant: ACTIVE (Click to Stop)",
             "voice_assistant_inactive_title": "Voice Assistant: INACTIVE (Click to Start)",
             "voice_status_listening": "LISTENING...",
-            "voice_status_processing": "MEMPROSES...",
-            "voice_status_speaking": "MEMBICARAKAN...",
-            "voice_status_inactive": "NONAKTIF",
-            "voice_error_start_recognition": "Maaf, tidak dapat memulai pengenalan suara. Pastikan mikrofon berfungsi dan izinkan akses.",
-            "voice_error_general": "Terjadi kesalahan pada pengenalan suara.",
-            "voice_error_not_allowed": "Akses mikrofon ditolak. Mohon izinkan penggunaan mikrofon.",
-            "voice_error_no_speech": "Tidak ada suara terdeteksi. Silakan coba lagi.",
-            "voice_error_network": "Tidak ada koneksi internet untuk pengenalan suara. Mohon periksa koneksi Anda.",
-            "loading_image": "MEMUAT GAMBAR...",
-            "loading": "Memuat",
-            "image_not_found_error": "GALAT: GAMBAR TIDAK DITEMUKAN. Silakan periksa jalur file.",
-            "loading_error": "Galat memuat",
-            "check_file_path": "Periksa jalur file",
-            "konami_code_activated": "AKSES DIBERIKAN: Mode Overclock Diaktifkan! Bersiaplah untuk dampak.",
-            "link_opened_confirmation": (title) => `Baik, saya akan membuka ${title} Deden.`,
-            "download_cv_confirmation": () => 'Baik, CV Deden Hadiguna akan diunduh.',
-            "project": "proyek",
-            "certificate": "sertifikat",
-            "education_history": "riwayat pendidikan",
-            "which_project": "proyek mana",
-            "which_certificate": "sertifikat mana",
-            "which_education_history": "riwayat pendidikan mana",
-            "skills_info": () => 'Tentu, ini adalah keahlian Deden. Apakah ada keahlian tertentu yang ingin Anda ketahui lebih lanjut?',
-            "projects_info": () => 'Ini adalah daftar proyek Deden. Apakah ada proyek spesifik yang menarik perhatian Anda?',
-            "education_info": () => 'Berikut riwayat pendidikan Deden. Ada pertanyaan lain?',
-            "contact_info": () => 'Tentu, ini adalah informasi kontak Deden.',
-            "cv_link": "tautan CV",
-            "link": "tautan"
+            "voice_status_processing": "PROCESSING...",
+            "voice_status_speaking": "SPEAKING...",
+            "voice_status_inactive": "INACTIVE",
+            "voice_error_start_recognition": "Sorry, cannot start speech recognition. Make sure your microphone is working and allow access.",
+            "voice_error_general": "An error occurred with speech recognition.",
+            "voice_error_not_allowed": "Microphone access denied. Please allow microphone usage.",
+            "voice_error_no_speech": "No speech detected. Please try again.",
+            "voice_error_network": "No internet connection for speech recognition. Please check your connection.",
+            "loading_image": "LOADING IMAGE...",
+            "loading": "Loading",
+            "image_not_found_error": "ERROR: IMAGE NOT FOUND. Please check file path.",
+            "loading_error": "Error loading",
+            "check_file_path": "Check file path",
+            "konami_code_activated": "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.",
+            "link_opened_confirmation": (title) => `Okay, I will open Deden's ${title}.`,
+            "download_cv_confirmation": () => 'Okay, Deden Hadiguna\'s CV will be downloaded.',
+            "project": "project",
+            "certificate": "certificate",
+            "education_history": "education history",
+            "which_project": "which project",
+            "which_certificate": "which certificate",
+            "which_education_history": "which education history",
+            "skills_info": () => 'Certainly, these are Deden\'s skills. Is there any particular skill you\'d like to know more about?',
+            "projects_info": () => 'Here is a list of Deden\'s projects. Is there any specific project that catches your attention?',
+            "education_info": () => 'Here is Deden\'s education history. Any other questions?',
+            "contact_info": () => 'Certainly, here is Deden\'s contact information.',
+            "cv_link": "CV link",
+            "link": "link"
         }
     };
 
@@ -494,6 +494,22 @@
         localStorage.setItem('selectedLanguage', lang);
     }
 
+    function initLanguageToggle() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        if (langButtons.length === 0) {
+            return;
+        }
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyLanguage(button.dataset.lang);
+            });
+        });
+
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'id';
+        applyLanguage(savedLanguage);
+    }
+
     let uptimeSeconds = 0;
     let uptimeInterval;
     const uptimeDisplay = document.getElementById('uptime-display');
@@ -620,7 +636,6 @@
                     break;
             }
         } catch (e) {
-            // console.warn("AudioContext error:", e);
         }
     };
 
@@ -661,7 +676,6 @@
             return;
         }
         if (!recognition) {
-            // console.error("SpeechRecognition not initialized.");
             return;
         }
 
@@ -669,9 +683,7 @@
             recognition.start();
         } catch (e) {
             if (e.message.includes("already started")) {
-                // console.warn("Speech recognition already started.");
             } else {
-                // console.error("Error starting speech recognition:", e);
                 initAIStatus('GALAT', GLITCH_COLOR);
                 aiVoiceToggle.dataset.active = 'false';
                 aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Galat)');
@@ -693,14 +705,12 @@
 
         if (!SpeechRecognition || !SpeechSynthesis || !SpeechSynthesisUtterance) {
             aiVoiceToggle.style.display = 'none';
-            // console.warn("Speech Recognition or Synthesis API not supported in this browser.");
             return;
         }
 
         synth = SpeechSynthesis;
-        // Wait for voices to be loaded, then find and set AI voice
         synth.onvoiceschanged = findAndSetAIvoice;
-        if (synth.getVoices().length > 0) { // If voices are already loaded
+        if (synth.getVoices().length > 0) {
             findAndSetAIvoice();
         }
 
@@ -716,7 +726,7 @@
                 recognition = new SpeechRecognition();
                 recognition.lang = document.documentElement.lang === 'id' ? 'id-ID' : 'en-US';
                 recognition.interimResults = false;
-                recognition.continuous = true; // Keep listening after a result
+                recognition.continuous = true;
                 recognition.maxAlternatives = 1;
 
                 recognition.onstart = () => {
@@ -730,11 +740,9 @@
                     const speechResult = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
 
                     if (speechResult) {
-                        // console.log("Speech Result:", speechResult);
                         initAIStatus(languageData[document.documentElement.lang]["voice_status_processing"] || 'MEMPROSES...', HIGHLIGHT_COLORS.secondary);
                         aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
                         
-                        // Stop recognition while processing/speaking to avoid re-triggering
                         if (recognition && listening) {
                             recognition.stop();
                             listening = false;
@@ -743,21 +751,19 @@
                         simulateThinking(() => {
                             let aiResponse = processVoiceCommand(speechResult);
                             speakText(aiResponse, () => {
-                                // After speaking, if the toggle is still active, restart recognition
                                 if (aiContext.lastIntent === 'stop_command') {
                                     aiVoiceToggle.dataset.active = 'false';
                                     aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
                                     initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
-                                    aiContext = {}; // Clear context on stop
+                                    aiContext = {};
                                     playSound('stop_listening');
-                                    clearTimeout(proactiveHelpTimer); // Clear proactive help when stopped manually
+                                    clearTimeout(proactiveHelpTimer);
                                 } else if (aiVoiceToggle.dataset.active === 'true') {
                                     startSpeechRecognition();
                                 }
                             });
                         });
                     } else {
-                        // console.warn("No speech detected in result.");
                     }
                 };
 
@@ -766,43 +772,39 @@
                     aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
                     
                     let errorMessage = languageData[document.documentElement.lang]["voice_error_general"] || "Terjadi kesalahan pada pengenalan suara.";
-                    let shouldDeactivateToggle = true; // Default to deactivate toggle on error
+                    let shouldDeactivateToggle = true;
 
                     if (event.error === 'not-allowed') {
                         errorMessage = languageData[document.documentElement.lang]["voice_error_not_allowed"] || "Akses mikrofon ditolak. Mohon izinkan penggunaan mikrofon.";
                     } else if (event.error === 'no-speech') {
                         errorMessage = languageData[document.documentElement.lang]["voice_error_no_speech"] || "Tidak ada suara terdeteksi. Silakan coba lagi.";
-                        shouldDeactivateToggle = false; // Don't deactivate, just try again if active
-                        if (aiVoiceToggle.dataset.active === 'true' && !speaking) { // If still active and not speaking, try to restart listening
+                        shouldDeactivateToggle = false; 
+                        if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
                             initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
                             startSpeechRecognition();
                         } else {
-                            shouldDeactivateToggle = true; // Deactivate if already speaking or explicitly deactivated
+                            shouldDeactivateToggle = true;
                         }
-                        return; // Exit here, will restart or deactivate based on shouldDeactivateToggle
+                        return;
                     } else if (event.error === 'network') {
                         errorMessage = languageData[document.documentElement.lang]["voice_error_network"] || "Tidak ada koneksi internet untuk pengenalan suara. Mohon periksa koneksi Anda.";
                     } else if (event.error === 'aborted') {
-                        // Aborted can happen when recognition.stop() is called intentionally
-                        // Only deactivate if it was not intentional stop (i.e. if the toggle is still true and we aren't speaking)
                         if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
-                             // console.warn("Speech recognition aborted unexpectedly.");
                             aiVoiceToggle.dataset.active = 'false';
                             aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
                             initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
-                            aiContext = {}; // Clear context on stop
-                            clearTimeout(proactiveHelpTimer); // Clear proactive help when stopped manually
+                            aiContext = {};
+                            clearTimeout(proactiveHelpTimer);
                             playSound('stop_listening');
                         }
-                        return; // Do not show generic error or speak if aborted intentionally
+                        return;
                     }
 
-                    // console.error("Speech recognition error:", event.error, errorMessage);
                     if (shouldDeactivateToggle) {
                         initAIStatus('GALAT', GLITCH_COLOR);
                         aiVoiceToggle.dataset.active = 'false';
                         aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Galat)');
-                        aiContext = {}; // Clear context on error
+                        aiContext = {};
                         clearTimeout(proactiveHelpTimer);
                         speakText(errorMessage);
                         playSound('unrecognized');
@@ -812,65 +814,57 @@
                 recognition.onend = () => {
                     listening = false;
                     aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
-                    // console.log("Speech recognition ended.");
-                    // Only restart if the toggle is still explicitly active and not currently speaking
                     if (aiVoiceToggle.dataset.active === 'true' && !speaking) {
                         initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
                         startSpeechRecognition();
                     } else if (aiVoiceToggle.dataset.active !== 'true' && !speaking) {
-                        // If deactivated by user or error, set to inactive status
                         initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
-                        aiContext = {}; // Clear context on stop
+                        aiContext = {};
                         playSound('stop_listening');
-                        clearTimeout(proactiveHelpTimer); // Clear proactive help when stopped manually
+                        clearTimeout(proactiveHelpTimer);
                     }
                 };
 
                 startSpeechRecognition();
 
             } else {
-                // Deactivate Voice Assistant
                 aiVoiceToggle.dataset.active = 'false';
                 aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
-                if (recognition) { // Ensure recognition is defined before stopping
+                if (recognition) { 
                     recognition.stop();
-                    recognition = null; // Clear recognition object
+                    recognition = null;
                 }
                 listening = false;
                 if (synth && synth.speaking) {
-                    synth.cancel(); // Stop any ongoing speech
+                    synth.cancel();
                 }
                 speaking = false;
                 aiVoiceToggle.querySelector('i').classList.remove('fa-beat-fade');
                 initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
-                aiContext = {}; // Clear context on stop
+                aiContext = {};
                 playSound('stop_listening');
-                clearTimeout(proactiveHelpTimer); // Clear proactive help when stopped manually
+                clearTimeout(proactiveHelpTimer);
             }
         });
 
-        // Event listener for speech synthesis ending
         synth.addEventListener('end', () => {
             speaking = false;
-            // console.log("Speech synthesis ended.");
             if (aiContext.lastIntent === 'stop_command') {
                 aiVoiceToggle.dataset.active = 'false';
                 aiVoiceToggle.setAttribute('title', languageData[document.documentElement.lang]["voice_assistant_inactive_title"] || 'Asisten Suara: NONAKTIF (Klik untuk Memulai)');
                 initAIStatus(languageData[document.documentElement.lang]["voice_status_inactive"] || 'NONAKTIF', HIGHLIGHT_COLORS.secondary);
-                aiContext = {}; // Clear context on stop
+                aiContext = {};
                 playSound('stop_listening');
-                clearTimeout(proactiveHelpTimer); // Clear proactive help when stopped manually
+                clearTimeout(proactiveHelpTimer);
             } else if (aiVoiceToggle.dataset.active === 'true') {
                 initAIStatus(languageData[document.documentElement.lang]["voice_status_listening"] || 'MENDENGARKAN...', HIGHLIGHT_COLORS.primary);
                 startSpeechRecognition();
             }
         });
 
-        // Event listener for speech synthesis starting
         synth.addEventListener('start', () => {
             speaking = true;
             initAIStatus(languageData[document.documentElement.lang]["voice_status_speaking"] || 'MEMBICARAKAN...', HIGHLIGHT_COLORS.secondary);
-            // Stop recognition if speaking starts (prevents echoes/loops)
             if (recognition && listening) {
                 recognition.stop();
                 listening = false;
@@ -888,7 +882,6 @@
             }
         }
 
-        // Advanced matching for multi-word keywords
         const commandWords = command.split(/\s+/).filter(word => word.length > 0);
         for (const keyword of keywords) {
             const keywordWords = keyword.split(/\s+/).filter(word => word.length > 0);
@@ -907,7 +900,7 @@
                         break;
                     }
                 }
-                if (!found) break; // Keyword word not found in order
+                if (!found) break;
             }
             if (matchesInOrder === keywordWords.length && matchesInOrder > 0) {
                 return true;
@@ -1243,26 +1236,26 @@
             "voice_error_not_allowed": "Microphone access denied. Please allow microphone usage.",
             "voice_error_no_speech": "No speech detected. Please try again.",
             "voice_error_network": "No internet connection for speech recognition. Please check your connection.",
-            "loading_image": "MEMUAT GAMBAR...",
-            "loading": "Memuat",
-            "image_not_found_error": "GALAT: GAMBAR TIDAK DITEMUKAN. Silakan periksa jalur file.",
-            "loading_error": "Galat memuat",
-            "check_file_path": "Periksa jalur file",
-            "konami_code_activated": "AKSES DIBERIKAN: Mode Overclock Diaktifkan! Bersiaplah untuk dampak.",
-            "link_opened_confirmation": (title) => `Baik, saya akan membuka ${title} Deden.`,
-            "download_cv_confirmation": () => 'Baik, CV Deden Hadiguna akan diunduh.',
-            "project": "proyek",
-            "certificate": "sertifikat",
-            "education_history": "riwayat pendidikan",
-            "which_project": "proyek mana",
-            "which_certificate": "sertifikat mana",
-            "which_education_history": "riwayat pendidikan mana",
-            "skills_info": () => 'Tentu, ini adalah keahlian Deden. Apakah ada keahlian tertentu yang ingin Anda ketahui lebih lanjut?',
-            "projects_info": () => 'Ini adalah daftar proyek Deden. Apakah ada proyek spesifik yang menarik perhatian Anda?',
-            "education_info": () => 'Berikut riwayat pendidikan Deden. Ada pertanyaan lain?',
-            "contact_info": () => 'Tentu, ini adalah informasi kontak Deden.',
-            "cv_link": "tautan CV",
-            "link": "tautan"
+            "loading_image": "LOADING IMAGE...",
+            "loading": "Loading",
+            "image_not_found_error": "ERROR: IMAGE NOT FOUND. Please check file path.",
+            "loading_error": "Error loading",
+            "check_file_path": "Check file path",
+            "konami_code_activated": "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.",
+            "link_opened_confirmation": (title) => `Okay, I will open Deden's ${title}.`,
+            "download_cv_confirmation": () => 'Okay, Deden Hadiguna\'s CV will be downloaded.',
+            "project": "project",
+            "certificate": "certificate",
+            "education_history": "education history",
+            "which_project": "which project",
+            "which_certificate": "which certificate",
+            "which_education_history": "which education history",
+            "skills_info": () => 'Certainly, these are Deden\'s skills. Is there any particular skill you\'d like to know more about?',
+            "projects_info": () => 'Here is a list of Deden\'s projects. Is there any specific project that catches your attention?',
+            "education_info": () => 'Here is Deden\'s education history. Any other questions?',
+            "contact_info": () => 'Certainly, here is Deden\'s contact information.',
+            "cv_link": "CV link",
+            "link": "link"
         }
     };
 
@@ -1665,7 +1658,6 @@
             if (voiceToUse) {
                 utterance.voice = voiceToUse;
             } else {
-                // console.warn("No suitable voice found for current language.");
             }
         }
 
@@ -1687,7 +1679,6 @@
             if (callback) callback();
             playSound('unrecognized');
             resetProactiveHelpTimer();
-            // console.error("SpeechSynthesisUtterance error:", event);
         };
 
         synth.speak(utterance);
@@ -1709,8 +1700,7 @@
 
         for (let i = sections.length - 1; i >= 0; i--) {
             const section = sections[i];
-            // Adjust sectionTop for better highlight accuracy when scrolling
-            const sectionTop = section.offsetTop - navbarHeight - 90; // Add some offset
+            const sectionTop = section.offsetTop - navbarHeight - 90;
             if (window.scrollY >= sectionTop) {
                 currentSectionId = section.id;
                 break;
@@ -1742,8 +1732,6 @@
                         top: targetSection.offsetTop - navbarHeight + 1,
                         behavior: 'smooth'
                     });
-                    playSound('success'); // Play sound on successful navigation
-                    // Close mobile menu if open
                     const sideOverlayMenu = document.getElementById('sideOverlayMenu');
                     if (sideOverlayMenu && sideOverlayMenu.classList.contains('open')) {
                         sideOverlayMenu.classList.remove('open');
@@ -1764,7 +1752,7 @@
                         top: targetSection.offsetTop - navbarHeight + 1,
                         behavior: 'smooth'
                     });
-                    playSound('success'); // Play sound on successful CTA click
+                    playSound('success');
                 }
             });
         });
@@ -1777,60 +1765,44 @@
         const navLinksSide = document.getElementById('navLinksSide');
 
         if (!menuToggle || !sideOverlayMenu || !closeSideMenuBtn || !navLinksSide) {
-            // console.warn("Mobile menu elements not found. Skipping mobile menu initialization.");
             return;
         }
 
         menuToggle.addEventListener('click', () => {
             sideOverlayMenu.classList.add('open');
-            // Accessibility: Set focus to close button when menu opens
-            closeSideMenuBtn.focus();
         });
 
         closeSideMenuBtn.addEventListener('click', () => {
             sideOverlayMenu.classList.remove('open');
-            // Accessibility: Return focus to menu toggle button when menu closes
-            menuToggle.focus();
         });
 
-        // Close menu when a navigation link is clicked
         navLinksSide.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 sideOverlayMenu.classList.remove('open');
             });
-        });
-
-        // Close menu if user presses Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && sideOverlayMenu.classList.contains('open')) {
-                sideOverlayMenu.classList.remove('open');
-                menuToggle.focus();
-            }
         });
     }
 
     function initContentAnimations() {
         const skillCards = document.querySelectorAll('.skill-card');
         const options = {
-            root: null, // viewport
+            root: null,
             rootMargin: '0px',
-            threshold: 0.1 // Trigger when 10% of the item is visible
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Animate skill bar width
                     const skillBarDiv = entry.target.querySelector('.skill-level-bar div');
                     if (skillBarDiv) {
                         skillBarDiv.style.width = entry.target.dataset.hoverValue || '0%';
-                        obs.unobserve(entry.target); // Stop observing once animated
+                        obs.unobserve(entry.target);
                     }
                 }
             });
         }, options);
 
-        // Observe each skill card
         skillCards.forEach(element => {
             observer.observe(element);
         });
@@ -1841,7 +1813,7 @@
         if (/[a-zA-Z0-9]/.test(originalChar)) {
             return chars[Math.floor(Math.random() * chars.length)];
         }
-        return originalChar; // Keep non-alphanumeric characters as is
+        return originalChar;
     }
 
     function getRandomScrambledText(text) {
@@ -1859,9 +1831,9 @@
         }
 
         const decryptObserverOptions = {
-            root: null, // Use the viewport as the container
-            rootMargin: '0px 0px -15% 0px', // Trigger when 15% from the bottom of the viewport
-            threshold: 0.5 // Trigger when 50% of the element is visible
+            root: null,
+            rootMargin: '0px 0px -15% 0px',
+            threshold: 0.5
         };
 
         const decryptObserver = new IntersectionObserver((entries, observer) => {
@@ -1871,57 +1843,50 @@
 
                     const originalText = element.dataset.text;
                     if (!originalText) {
-                        // console.warn("Decrypt text element missing data-text attribute:", element);
                         return;
                     }
 
-                    // Remove existing pseudo-content span if any from previous runs
                     let pseudoContentSpan = element.querySelector('.decrypt-pseudo-content');
                     if (pseudoContentSpan) {
                         pseudoContentSpan.remove();
                     }
                     
-                    // Create a new span to hold the pseudo-content during scrambling
                     pseudoContentSpan = document.createElement('span');
                     pseudoContentSpan.classList.add('decrypt-pseudo-content');
-                    element.innerHTML = ''; // Clear original content
+                    element.innerHTML = '';
                     element.appendChild(pseudoContentSpan);
 
 
-                    let charIndex = 0; // Current character index being decrypted
-                    let scrambleIteration = 0; // How many times to scramble each character
-                    const maxScrambleIterations = 3; // Number of scrambles per character before it's finalized
-                    const decryptionSpeed = parseInt(element.dataset.decryptSpeed) || 30; // Milliseconds per decryption step
+                    let charIndex = 0;
+                    let scrambleIteration = 0;
+                    const maxScrambleIterations = 3;
+                    const decryptionSpeed = parseInt(element.dataset.decryptSpeed) || 30;
 
-                    element.classList.add('scrambling'); // Add class to indicate scrambling in progress
-                    element.style.opacity = '1'; // Make sure element is visible during decryption
+                    element.classList.add('scrambling');
+                    element.style.opacity = '1';
 
                     const decryptInterval = setInterval(() => {
                         if (charIndex < originalText.length) {
                             if (scrambleIteration < maxScrambleIterations) {
-                                // Scramble the remaining part of the text
                                 const scrambledPart = getRandomScrambledText(originalText.substring(charIndex));
                                 pseudoContentSpan.textContent = originalText.substring(0, charIndex) + scrambledPart;
                                 scrambleIteration++;
                             } else {
-                                // Finalize current character and move to the next
                                 charIndex++;
                                 scrambleIteration = 0;
                                 pseudoContentSpan.textContent = originalText.substring(0, charIndex) + getRandomScrambledText(originalText.substring(charIndex));
                             }
                         } else {
-                            // Decryption complete
                             clearInterval(decryptInterval);
-                            element.textContent = originalText; // Set final text
+                            element.textContent = originalText;
                             element.classList.remove('scrambling');
-                            element.classList.add('decrypted'); // Mark as decrypted
-                            // Clean up the pseudo span after a short delay
+                            element.classList.add('decrypted');
                             setTimeout(() => {
                                 if (pseudoContentSpan) {
                                     pseudoContentSpan.remove();
                                 }
                             }, 300);
-                            observer.unobserve(element); // Stop observing this element
+                            observer.unobserve(element);
                         }
                     }, decryptionSpeed);
                 }
@@ -1929,13 +1894,12 @@
         }, decryptObserverOptions);
 
         decryptTexts.forEach(element => {
-            // Ensure data-text is set, especially for i18n elements
             if (!element.dataset.text && element.hasAttribute('data-i18n')) {
                 const key = element.getAttribute('data-i18n');
                 element.dataset.text = languageData[document.documentElement.lang][key] || element.textContent;
             }
-            element.textContent = ''; // Clear text initially
-            element.style.opacity = '0'; // Hide initially
+            element.textContent = '';
+            element.style.opacity = '0';
             decryptObserver.observe(element);
         });
     }
@@ -1953,15 +1917,13 @@
     function initQuantumCanvas() {
         quantumCanvas = document.getElementById('quantumCanvas');
         if (!quantumCanvas) {
-            // console.warn("Quantum Canvas element not found. Skipping quantum canvas initialization.");
             return;
         }
 
         quantumCtx = quantumCanvas.getContext('2d');
         window.addEventListener('resize', debounce(resizeQuantumCanvas, 200));
-        resizeQuantumCanvas(); // Initial resize and particle generation
+        resizeQuantumCanvas();
 
-        // Mouse interaction for particle repulsion
         quantumCanvas.addEventListener('mousemove', function(e) {
             const rect = quantumCanvas.getBoundingClientRect();
             mouse.x = e.clientX - rect.left;
@@ -1973,7 +1935,6 @@
             mouse.y = null;
         });
 
-        // Ensure only one animation frame loop is running
         if (particlesAnimationFrameId) {
             cancelAnimationFrame(particlesAnimationFrameId);
         }
@@ -1985,14 +1946,13 @@
             quantumCanvas.width = quantumCanvas.offsetWidth;
             quantumCanvas.height = quantumCanvas.offsetHeight;
 
-            // Re-initialize particles on resize to fill new dimensions
             particles = [];
             for (let i = 0; i < PARTICLE_COUNT; i++) {
                 particles.push(new Particle(
                     Math.random() * quantumCanvas.width,
                     Math.random() * quantumCanvas.height,
-                    (Math.random() - 0.5) * PARTICLE_SPEED_MULTIPLIER, // Random horizontal velocity
-                    (Math.random() - 0.5) * PARTICLE_SPEED_MULTIPLIER  // Random vertical velocity
+                    (Math.random() - 0.5) * PARTICLE_SPEED_MULTIPLIER,
+                    (Math.random() - 0.5) * PARTICLE_SPEED_MULTIPLIER
                 ));
             }
         }
@@ -2005,13 +1965,13 @@
             this.vx = vx;
             this.vy = vy;
             this.size = PARTICLE_SIZE;
-            this.opacity = Math.random() * 0.6 + 0.2; // Random opacity for subtle variation
+            this.opacity = Math.random() * 0.6 + 0.2;
         }
 
         draw() {
             if (!quantumCtx) return;
-            // Using a hue that leans towards the new primary accent color (Skyline blue)
-            quantumCtx.fillStyle = `hsla(195, 80%, 60%, ${this.opacity})`; /* Adjusted to be closer to Skyline blue */
+            const hue = Math.random() * 60 + 180;
+            quantumCtx.fillStyle = `hsla(${hue}, 80%, 70%, ${this.opacity})`;
             quantumCtx.beginPath();
             quantumCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             quantumCtx.closePath();
@@ -2019,7 +1979,6 @@
         }
 
         update() {
-            // Bounce off walls
             if (this.x + this.size > quantumCanvas.width || this.x - this.size < 0) {
                 this.vx *= -1;
             }
@@ -2030,7 +1989,6 @@
             this.x += this.vx;
             this.y += this.vy;
 
-            // Mouse interaction (repulsion)
             if (mouse.x !== null && mouse.y !== null) {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
@@ -2041,7 +1999,7 @@
                     let forceDirectionY = dy / distance;
                     let maxDistance = mouse.radius;
                     let force = (maxDistance - distance) / maxDistance;
-                    let repulsionStrength = 1.2; // How strong the repulsion is
+                    let repulsionStrength = 1.2;
                     let directionX = forceDirectionX * force * repulsionStrength;
                     let directionY = forceDirectionY * force * repulsionStrength;
 
@@ -2050,18 +2008,16 @@
                 }
             }
 
-            // Draw lines between nearby particles
             for (let i = 0; i < particles.length; i++) {
                 let otherParticle = particles[i];
-                if (this !== otherParticle) { // Don't draw line to itself
+                if (this !== otherParticle) {
                     let dx = this.x - otherParticle.x;
                     let dy = this.y - otherParticle.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 150) { // Only draw if within a certain distance
+                    if (distance < 150) {
                         if (!quantumCtx) return;
-                        // Line color with opacity based on distance (fades out further away)
-                        quantumCtx.strokeStyle = `rgba(43, 192, 228, ${0.4 - (distance / 150) * 0.4})`; /* Using rgba of new primary accent color */
+                        quantumCtx.strokeStyle = `rgba(0, 191, 255, ${0.4 - (distance / 150) * 0.4})`;
                         quantumCtx.lineWidth = 0.8;
                         quantumCtx.beginPath();
                         quantumCtx.moveTo(this.x, this.y);
@@ -2075,12 +2031,12 @@
 
     function animateParticles() {
         if (!quantumCtx || !quantumCanvas) return;
-        quantumCtx.clearRect(0, 0, quantumCanvas.width, quantumCanvas.height); // Clear canvas
+        quantumCtx.clearRect(0, 0, quantumCanvas.width, quantumCanvas.height);
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
             particles[i].draw();
         }
-        particlesAnimationFrameId = requestAnimationFrame(animateParticles); // Loop animation
+        particlesAnimationFrameId = requestAnimationFrame(animateParticles);
     }
 
     function initProjectFiltering() {
@@ -2088,40 +2044,34 @@
         const projectItems = document.querySelectorAll('.project-item');
 
         if (!filterButtonsContainer || projectItems.length === 0) {
-            // console.warn("Project filter elements not found. Skipping project filtering initialization.");
             return;
         }
 
         filterButtonsContainer.addEventListener('click', function(event) {
             const clickedButton = event.target.closest('.filter-btn');
-            // Only proceed if a filter button was clicked and it's not already active
             if (!clickedButton || clickedButton.classList.contains('active')) return;
 
-            // Remove 'active' class from all buttons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            // Add 'active' class to the clicked button
             clickedButton.classList.add('active');
 
-            const filter = clickedButton.dataset.filter; // Get filter category from data-filter attribute
+            const filter = clickedButton.dataset.filter;
 
             projectItems.forEach(item => {
-                const category = item.dataset.category; // Get project categories from data-category attribute
+                const category = item.dataset.category;
                 const isVisible = (filter === 'all' || category.includes(filter));
 
                 if (isVisible) {
                     item.style.display = 'block';
-                    // Re-trigger AOS animation for visible items
-                    item.classList.remove('aos-animate'); // Remove to allow re-animating
-                    void item.offsetWidth; // Trigger reflow
+                    item.classList.remove('aos-animate');
+                    void item.offsetWidth;
                     item.classList.add('aos-animate');
                 } else {
                     item.style.display = 'none';
-                    item.classList.remove('aos-animate'); // Ensure hidden items don't have animation class
+                    item.classList.remove('aos-animate');
                 }
             });
         });
 
-        // Trigger initial "ALL" filter on load
         const initialFilterButton = document.querySelector('.filter-btn[data-filter="all"]');
         if (initialFilterButton) {
             initialFilterButton.click();
@@ -2135,7 +2085,6 @@
         const skillOverlayDesc = document.getElementById('skill-overlay-desc');
 
         if (!skillCardsContainer || skillCards.length === 0 || !skillOverlayValue || !skillOverlayDesc) {
-            // console.warn("Skill info overlay elements not found. Skipping skill info overlay initialization.");
             return;
         }
 
@@ -2145,8 +2094,8 @@
         const resetSkillOverlay = () => {
             skillOverlayValue.textContent = defaultOverlayValue;
             skillOverlayDesc.textContent = defaultOverlayDesc;
-            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary; /* Menggunakan aksen sekunder baru */
-            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary; /* Menggunakan aksen tersier baru */
+            skillOverlayValue.style.color = HIGHLIGHT_COLORS.secondary;
+            skillOverlayDesc.style.color = HIGHLIGHT_COLORS.tertiary;
         };
 
         skillCards.forEach(card => {
@@ -2157,24 +2106,22 @@
                 
                 skillOverlayValue.textContent = value;
                 skillOverlayDesc.textContent = desc;
-                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary; /* Menggunakan aksen primer baru */
-                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText; /* Menggunakan warna darkText (sebenarnya teks biasa) */
+                skillOverlayValue.style.color = HIGHLIGHT_COLORS.primary;
+                skillOverlayDesc.style.color = HIGHLIGHT_COLORS.darkText;
             };
 
             card.addEventListener('mouseenter', updateOverlay);
-            card.addEventListener('focusin', updateOverlay); // For keyboard navigation
+            card.addEventListener('focusin', updateOverlay);
         });
 
         skillCardsContainer.addEventListener('mouseleave', resetSkillOverlay);
 
-        // Reset overlay if focus moves outside the container (e.g., tabbing)
         document.addEventListener('focusout', (event) => {
             if (!skillCardsContainer.contains(event.relatedTarget)) {
                 resetSkillOverlay();
             }
         });
 
-        // Initialize with default state
         resetSkillOverlay();
     }
 
@@ -2184,35 +2131,29 @@
         const modalImg = modal ? document.getElementById("modal-image-display") : null;
         const captionText = modal ? document.getElementById("modal-caption") : null;
         const closeBtn = modal ? modal.querySelector(".close-button") : null;
-        const profileAvatarImg = document.querySelector('.profile-avatar'); // Get profile avatar separately
+        const profileAvatarImg = document.querySelector('.profile-avatar');
 
         if (!modal || !modalContent || !modalImg || !captionText || !closeBtn) {
-            // console.warn("Image modal elements not found. Skipping image modal initialization.");
             return;
         }
 
         document.body.addEventListener('click', function(event) {
             const trigger = event.target.closest('.modal-trigger');
             
-            // Prevent opening modal for profile avatar if it's the specific target
             if (trigger === profileAvatarImg) {
                 return; 
             }
 
-            // If no modal-trigger class, do nothing
             if (!trigger) return;
 
-            // Get the parent card to extract image source and title
             const parentCard = trigger.closest('.project-card, .photo-item, .certificate-item');
             if (!parentCard) {
-                // console.warn("Modal trigger found but no identifiable parent card for content extraction.", trigger);
                 return;
             }
 
-            const imgSrc = parentCard.dataset.modalImage || trigger.src; // Prefer data-modal-image, fallback to src
+            const imgSrc = parentCard.dataset.modalImage || trigger.src;
             let title = '';
 
-            // Extract title based on card type and current language
             if (parentCard.classList.contains('project-card')) {
                 const titleKey = parentCard.querySelector('.project-title')?.getAttribute('data-i18n');
                 title = languageData[document.documentElement.lang][titleKey] || parentCard.dataset.projectTitle || parentCard.querySelector('.project-title')?.textContent || 'Project Image';
@@ -2225,78 +2166,68 @@
             }
 
             if (!imgSrc) {
-                // console.error("No image source found for modal trigger:", trigger);
                 return;
             }
 
-            // Reset modal content
             modalImg.src = '';
             modalImg.alt = title;
-            modalImg.style.display = 'none'; // Hide image while loading
+            modalImg.style.display = 'none';
 
-            // Remove any previous loading/error messages
             const existingLoadError = modalContent.querySelector('.modal-loading-text');
             if (existingLoadError) {
                 existingLoadError.remove();
             }
 
-            // Show loading text
             const loadingTextDiv = document.createElement('div');
             loadingTextDiv.classList.add('modal-loading-text');
             loadingTextDiv.textContent = languageData[document.documentElement.lang]["loading_image"] || 'LOADING IMAGE...';
             modalContent.appendChild(loadingTextDiv);
 
-            // Set background color for modal content while loading (or on error)
-            modalContent.style.backgroundColor = HIGHLIGHT_COLORS.lightBg; /* Menggunakan warna lightBg (dark) */
-            // Set caption text to loading state
-            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Memuat'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`; /* Menggunakan aksen tersier baru */
-            
-            // Display modal
+            modalContent.style.backgroundColor = HIGHLIGHT_COLORS.lightBg;
+            captionText.innerHTML = `${languageData[document.documentElement.lang]["loading"] || 'Loading'}: <span style="color: ${HIGHLIGHT_COLORS.tertiary};">${title}</span>`;
             modal.style.display = "flex";
-            modal.focus(); // Focus modal for accessibility
+            modal.focus();
 
-            // Load image
             modalImg.src = imgSrc;
 
             modalImg.onload = () => {
                 const currentLoadingText = modalContent.querySelector('.modal-loading-text');
                 if (currentLoadingText) {
-                    currentLoadingText.remove(); // Remove loading text
+                    currentLoadingText.remove();
                 }
-                modalImg.style.display = 'block'; // Show image
-                modalContent.style.backgroundColor = ''; // Reset background
-                captionText.innerHTML = title; // Set final caption
+                modalImg.style.display = 'block';
+                modalContent.style.backgroundColor = '';
+                captionText.innerHTML = title;
             };
 
             modalImg.onerror = () => {
-                // console.error("Error loading image:", imgSrc);
                 const currentLoadingText = modalContent.querySelector('.modal-loading-text');
                 if (currentLoadingText) {
-                    currentLoadingText.remove(); // Remove loading text
+                    currentLoadingText.remove();
                 }
                 const errorTextDiv = document.createElement('div');
                 errorTextDiv.classList.add('modal-loading-text');
-                errorTextDiv.style.color = GLITCH_COLOR; /* Menggunakan warna glitch baru */
+                errorTextDiv.style.color = GLITCH_COLOR;
                 errorTextDiv.textContent = languageData[document.documentElement.lang]["image_not_found_error"] || 'ERROR: IMAGE NOT FOUND. Please check file path.';
                 modalContent.appendChild(errorTextDiv);
-                modalContent.style.backgroundColor = 'rgba(100, 0, 0, 0.8)'; // Indicate error with red background
-                modalImg.style.display = 'none'; // Hide broken image
-                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Error loading'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Check file path'})</span>`; /* Menggunakan warna glitch baru */
+                modalContent.style.backgroundColor = 'rgba(100, 0, 0, 0.8)';
+                modalImg.style.display = 'none';
+                captionText.innerHTML = `${languageData[document.documentElement.lang]["loading_error"] || 'Error loading'}: <span style="color: ${GLITCH_COLOR};">${title} (${languageData[document.documentElement.lang]["check_file_path"] || 'Check file path'})</span>`;
             };
         });
 
         const closeModal = () => {
             modal.style.display = "none";
-            modalImg.src = ''; // Clear image source
+            modalImg.src = '';
             modalImg.alt = '';
             const currentLoadingText = modalContent.querySelector('.modal-loading-text');
-            if (currentLoadingText) currentLoadingText.remove(); // Clean up any lingering messages
+            if (currentLoadingText) currentLoadingText.remove();
         };
 
         closeBtn.addEventListener('click', closeModal);
 
         window.addEventListener('click', function(event) {
-            if (event.target === modal) { // Close if clicked outside the modal content
+            if (event.target === modal) {
                 closeModal();
             }
         });
@@ -2313,67 +2244,61 @@
         if (currentYearSpan) {
             currentYearSpan.textContent = new Date().getFullYear();
         } else {
-            // console.warn("Current year placeholder element not found.");
         }
     }
 
     const backToTopButton = document.getElementById('back-to-top');
     const handleScrollBackToTop = () => {
         if (!backToTopButton) return;
-        if (window.scrollY > 300) { // Show button after scrolling 300px
+        if (window.scrollY > 300) {
             backToTopButton.classList.add('show');
         } else {
             backToTopButton.classList.remove('show');
         }
     };
-    window.addEventListener('scroll', debounce(handleScrollBackToTop, 50)); // Debounce for performance
+    window.addEventListener('scroll', debounce(handleScrollBackToTop, 50));
 
     function initBackToTopButton() {
         if (!backToTopButton) {
-            // console.warn("Back to top button not found. Skipping initialization.");
             return;
         }
-        handleScrollBackToTop(); // Set initial visibility
+        handleScrollBackToTop();
 
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-            playSound('success'); // Play sound on scroll to top
+            playSound('success');
         });
     }
 
     function initKonamiCode() {
-        // Konami Code sequence
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiCodePosition = 0; // Current position in the sequence
+        let konamiCodePosition = 0;
 
         document.addEventListener('keydown', function(e) {
-            // Check if the pressed key matches the next key in the sequence
             if (e.key.toLowerCase() === konamiCode[konamiCodePosition].toLowerCase()) {
                 konamiCodePosition++;
-                // If the entire sequence is matched
                 if (konamiCodePosition === konamiCode.length) {
                     activateSecretFeature();
-                    konamiCodePosition = 0; // Reset for next time
+                    konamiCodePosition = 0;
                 }
             } else {
-                konamiCodePosition = 0; // Reset if incorrect key is pressed
+                konamiCodePosition = 0;
             }
         });
 
         function activateSecretFeature() {
-            alert(languageData[document.documentElement.lang]["konami_code_activated"] || "ACCESS GRANTED: Overclock Mode Activated! Prepare for impact.");
-            playSound('success'); // Play a success sound
+            alert(languageData[document.documentElement.lang]["konami_code_activated"] || "AKSES DIBERIKAN: Mode Overclock Diaktifkan! Bersiaplah untuk dampak.");
+            playSound('success');
 
             const body = document.body;
-            body.classList.add('overclock-mode'); // Add the overclock mode class
+            body.classList.add('overclock-mode');
 
-            // Remove the class after a duration
             setTimeout(() => {
                 body.classList.remove('overclock-mode');
-            }, 4000); // Remove after 4 seconds
+            }, 4000);
         }
     }
 
@@ -2382,20 +2307,17 @@
     function initTypedJS() {
         const typedElement = document.getElementById('typed-hero-title');
         if (!typedElement) {
-            // console.warn("Typed.js element not found. Skipping Typed.js initialization.");
             return;
         }
 
         const parentH1 = typedElement.closest('h1.decrypt-text');
-        // Get the text from language data or fallback to dataset/empty string
         const typedText = languageData[document.documentElement.lang]["hero_title"] || (parentH1 ? parentH1.dataset.text : '');
 
         if (!typedText) {
-            if (parentH1) parentH1.textContent = "Deden Hadiguna"; // Fallback text if no typedText
+            if (parentH1) parentH1.textContent = "Deden Hadiguna";
             return;
         }
 
-        // Destroy existing Typed.js instance if it exists to prevent duplicates
         if (typedInstance) {
             typedInstance.destroy();
         }
@@ -2404,16 +2326,14 @@
             strings: [typedText],
             typeSpeed: 70,
             backSpeed: 40,
-            loop: false, // Only type once
+            loop: false,
             showCursor: true,
             onComplete: (self) => {
-                // Ensure the final text is set and decryption classes are removed
                 if (parentH1) {
                     parentH1.classList.remove('scrambling');
                     parentH1.classList.add('decrypted');
                     parentH1.textContent = typedText;
                 }
-                // Hide cursor after typing is complete
                 const typedCursor = document.querySelector('.typed-cursor');
                 if(typedCursor) {
                     typedCursor.style.animation = 'none';
